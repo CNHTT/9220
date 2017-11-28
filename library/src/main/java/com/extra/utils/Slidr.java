@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 
 import com.extra.R;
 import com.extra.inter.SlidrInterface;
-import com.extra.model.SlidrConfig;
-import com.extra.view.SliderPanel;
+import com.extra.config.SlidrConfig;
+import com.extra.widget.SliderPanel;
 
 /**
  * author：ct on 2017/8/30 15:08

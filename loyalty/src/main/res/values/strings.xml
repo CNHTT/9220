@@ -1,3 +1,53 @@
 <resources>
     <string name="app_name">Loyalty</string>
+    <string name="login">Login</string>
+    <string name="please_email">please input uid</string>
+    <string name="please_pass">******</string>
+    <string name="loyalty_programs">1.Loyalty Programs</string>
+    <string name="log_out">2.Log Out</string>
+
+    <string name="lp">Loyalty Programs</string>
+
+    <string name="campaigns_list">Campaigns List</string>
+    <string name="deactivated_campaigns_list">Deactivated Campaigns List</string>
+    <string name="no_data">no data</string>
+    <string name="id">ID</string>
+    <string name="hint">01234</string>
+    <string name="name">NAME</string>
+    <string name="type">TYPE</string>
+    <string name="create_new_campaign">Create New Campaign</string>
+    <string name="campaign_name">Campaign Name</string>
+    <string name="points_ratio">Points Ratio</string>
+    <string name="reward_ratio">Reward Ratio</string>
+    <string name="amount_per_event">Amount Per Event</string>
+    <string name="description">Description</string>
+    <string name="no_null">Can not be empty</string>
+
+
+    <string-array name="lps">
+        <item>Campaign</item>
+        <item>Deactivated</item>
+        <item>Reward</item>
+        <item>Promo</item>
+        <item>BuyX Item</item>
+        <item>Depreciation</item>
+        <item>Fee</item>
+    </string-array>
+
+
+    <string-array name="type_restrict_value">
+        <item>Giftcard</item>
+        <item>BuyX</item>
+        <item>Events</item>
+        <item>Earned-per-Event</item>
+        <item>Points</item>
+    </string-array>
+    <string-array name="type_restrict">
+        <item>giftcard</item>
+        <item>buyx</item>
+        <item>events</item>
+        <item>earned</item>
+        <item>points</item>
+    </string-array>
+
 </resources>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/all_bg_color"
+    android:orientation="vertical"
+    tools:context="com.extra.loyalty.view.activity.CreateNewCampaignActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/all_bg_color"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@color/white">
+        <LinearLayout
+            android:padding="@dimen/length_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:ems="7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/campaign_name"/>
+
+            <EditText
+                android:id="@+id/et_campaign_name"
+                android:layout_marginLeft="@dimen/length_10"
+                android:background="@drawable/et_bg"
+                android:padding="@dimen/length_10"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:padding="@dimen/length_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:ems="7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/description"/>
+
+            <EditText
+                android:id="@+id/et_description"
+                android:layout_marginLeft="@dimen/length_10"
+                android:background="@drawable/et_bg"
+                android:padding="@dimen/length_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <com.extra.widget.wheelhorizontal.WheelHorizontalView
+            android:layout_width="match_parent"
+            android:id="@+id/wh_type"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wheel_h_index"/>
+
+        <LinearLayout
+            android:padding="@dimen/length_10"
+            android:layout_width="match_parent"
+            android:id="@+id/lv_point"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:ems="7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points_ratio"/>
+
+                <EditText
+                    android:id="@+id/et_points_ratio"
+                    android:layout_marginLeft="@dimen/length_10"
+                    android:background="@drawable/et_bg"
+                    android:padding="@dimen/length_10"
+                    android:maxLength="20"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/length_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:ems="7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reward_ratio"/>
+
+                <EditText
+                    android:id="@+id/et_reward_ratio"
+                    android:layout_marginLeft="@dimen/length_10"
+                    android:background="@drawable/et_bg"
+                    android:padding="@dimen/length_10"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:padding="@dimen/length_10"
+            android:layout_width="match_parent"
+            android:id="@+id/lv_event"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:ems="7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/amount_per_event"/>
+
+                <EditText
+                    android:id="@+id/et_amount_per_event"
+                    android:layout_marginLeft="@dimen/length_10"
+                    android:background="@drawable/et_bg"
+                    android:padding="@dimen/length_10"
+                    android:maxLength="20"
+                    android:inputType="numberDecimal"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/bt_button_bg"
+            android:text="@string/create_new_campaign"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

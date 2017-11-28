@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.extra.view.dialog.DialogSure;
+import com.extra.widget.dialog.DialogSure;
 
 /**
  * Created by Extra on 2017/11/15.

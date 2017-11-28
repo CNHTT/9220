@@ -22,8 +22,8 @@ public class PopupWindowUtil {
         anchorView.getLocationOnScreen(anchorLoc);
         final int anchorHeight = anchorView.getHeight();
         // 获取屏幕的高宽
-        final int screenHeight = ContextUtils.getSreenHeight(anchorView.getContext());
-        final int screenWidth = ContextUtils.getSreenWidth(anchorView.getContext());
+        final int screenHeight = ContextUtil.getSreenHeight(anchorView.getContext());
+        final int screenWidth = ContextUtil.getSreenWidth(anchorView.getContext());
         // 测量contentView
         contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         // 计算contentView的高宽

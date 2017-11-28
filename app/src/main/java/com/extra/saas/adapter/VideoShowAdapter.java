@@ -51,7 +51,6 @@ public class VideoShowAdapter extends BaseRecycleAdapter<VideoShowBean> {
     }
 
 
-
     @Override
     public int getLayoutId() {
         return R.layout.video_show;

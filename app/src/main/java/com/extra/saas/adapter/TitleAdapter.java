@@ -1,7 +1,6 @@
 package com.extra.saas.adapter;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,7 +8,7 @@ import android.widget.TextView;
 import com.extra.adapter.BaseListAdapter;
 import com.extra.saas.R;
 import com.extra.saas.model.TermsBean;
-import com.extra.utils.ContextUtils;
+import com.extra.utils.ContextUtil;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class TitleAdapter  extends BaseListAdapter<TermsBean>{
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null){
-            convertView = ContextUtils.inflate(mContext, R.layout.simple_list_item_1);
+            convertView = ContextUtil.inflate(mContext, R.layout.simple_list_item_1);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         }else {

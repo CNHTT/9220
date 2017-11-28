@@ -39,7 +39,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.extra.R;
-import com.extra.view.SDialog;
+import com.extra.widget.SDialog;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

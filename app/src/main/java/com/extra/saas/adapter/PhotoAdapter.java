@@ -9,8 +9,7 @@ import com.bumptech.glide.Glide;
 import com.extra.adapter.BaseListAdapter;
 import com.extra.saas.R;
 import com.extra.saas.model.SmetaBean.Photo;
-import com.extra.saas.model.TermsBean;
-import com.extra.utils.ContextUtils;
+import com.extra.utils.ContextUtil;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class PhotoAdapter extends BaseListAdapter<Photo> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = ContextUtils.inflate(mContext, R.layout.video_image);
+            convertView = ContextUtil.inflate(mContext, R.layout.video_image);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {

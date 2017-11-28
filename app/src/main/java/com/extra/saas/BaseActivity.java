@@ -11,7 +11,7 @@ import android.view.WindowManager;
 
 import com.extra.utils.AndroidBug5497Workaround;
 import com.extra.utils.AppManager;
-import com.extra.view.dialog.DialogSure;
+import com.extra.widget.dialog.DialogSure;
 import com.player.util.L;
 
 /**
