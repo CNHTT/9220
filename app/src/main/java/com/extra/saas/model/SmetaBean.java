@@ -1,12 +1,13 @@
 package com.extra.saas.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Extra on 2017/11/15.
  */
 
-public class SmetaBean {
+public class SmetaBean implements Serializable {
     private String thumb;
     private String template;
     private List<Photo> photo;
@@ -35,7 +36,7 @@ public class SmetaBean {
         this.photo = photo;
     }
 
-    public static class Photo {
+    public static class Photo implements Serializable  {
         private String url;
         private String alt;
 

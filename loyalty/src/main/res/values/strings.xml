@@ -4,7 +4,8 @@
     <string name="please_email">please input uid</string>
     <string name="please_pass">******</string>
     <string name="loyalty_programs">1.Loyalty Programs</string>
-    <string name="log_out">2.Log Out</string>
+    <string name="business_employees">2.Users (Business Employees)</string>
+    <string name="log_out">3.Log Out</string>
 
     <string name="lp">Loyalty Programs</string>
 
@@ -22,6 +23,18 @@
     <string name="amount_per_event">Amount Per Event</string>
     <string name="description">Description</string>
     <string name="no_null">Can not be empty</string>
+    <string name="user_name">User Name</string>
+    <string name="user_pass">User Password</string>
+    <string name="user_first_name">First Name</string>
+    <string name="user_last_name">Last Name</string>
+    <string name="user_custom">User Custom</string>
+    <string name="user_pin">User PIN</string>
+    <string name="language">Language</string>
+    <string name="user_role">User Role</string>
+    <string name="allowed_campaigns">Campaign</string>
+    <string name="create_new_user">Create New User</string>
+    <string name="english">English</string>
+    <string name="admin">Administrator</string>
 
 
     <string-array name="lps">
@@ -50,4 +63,72 @@
         <item>points</item>
     </string-array>
 
+
+    <string-array name="bes">
+        <item>User - New</item>
+        <item>Users - List</item>
+    </string-array>
+
+
+    <string-array name="user_permission_levels">
+        <item>A</item>
+        <item>M</item>
+        <item>S</item>
+        <item>N</item>
+        <item>G</item>
+        <item>I</item>
+        <item>K</item>
+        <item>P</item>
+        <item>F</item>
+        <item>C</item>
+        <item>O</item>
+    </string-array>
+    <string-array name="user_permission_levels_str">
+        <item>Administrator</item>
+        <item>Manager</item>
+        <item>Associate Manager</item>
+        <item>Custom Manager</item>
+        <item>Agency Client</item>
+        <item>Agency Client + Imports</item>
+        <item>Clerk</item>
+        <item>Temp</item>
+        <item>Fulfillment Contractor</item>
+        <item>Accountant</item>
+        <item>Observer</item>
+    </string-array>
+
+
+    <string-array name="available_languages">
+        <item>DA</item>
+        <item>DE</item>
+        <item>EN</item>
+        <item>ES</item>
+        <item>FR</item>
+        <item>GE</item>
+        <item>IT</item>
+        <item>PT</item>
+        <item>PT-BR</item>
+        <item>NO</item>
+        <item>TR</item>
+    </string-array>
+    <string-array name="available_languages_str">
+        <item>Dansk</item>
+        <item>Deutch</item>
+        <item>English</item>
+        <item>Español</item>
+        <item>Français</item>
+        <item>ქართული ენა</item>
+        <item>Italiano</item>
+        <item>Português</item>
+        <item>Português - Brasil</item>
+        <item>Norsk</item>
+        <item>Türkçe</item>
+    </string-array>
+
+
+    <string-array name="allowed_campaigns">
+        <item>all</item>
+        <item>campaigns</item>
+        <item>none</item>
+    </string-array>
 </resources>

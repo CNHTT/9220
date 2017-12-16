@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/bg"
+    android:layout_height="match_parent"
+    tools:context=".InsertNewBetActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/toolbar_bg"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/length_10"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/event"/>
+
+                <EditText
+                    android:id="@+id/et_sn"
+                    android:maxLength="5"
+                    android:padding="@dimen/length_10"
+                    android:background="@drawable/et_bg"
+                    android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="4"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="@dimen/length_2"
+                    android:inputType="number"
+                    tools:ignore="LabelFor" />
+                <EditText
+                    android:id="@+id/et_team"
+                    android:padding="@dimen/length_10"
+                    android:background="@drawable/et_bg"
+                    android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="8"/>
+
+
+                <ImageButton
+                    android:layout_gravity="center"
+                    android:id="@+id/bt_team_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_youtube_searched_for_black_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <com.extra.widget.RunTextView
+                    android:id="@+id/tv_team_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/length_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/et_bg"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:padding="@dimen/length_10"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true" />
+
+                <CheckBox
+                    android:id="@+id/ck_live_betting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/length_10"
+                    android:text="@string/live_betting" />
+            </LinearLayout>
+            <View
+                android:layout_marginTop="@dimen/length_10"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/background_color_black"/>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/length_30">
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:gravity="center"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:text="@string/data_bet"/>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="6"
+                    android:gravity="center"
+                    android:text="@string/start_time"/>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="4"
+                    android:gravity="center"
+                    android:text="@string/rn"/>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"/>
+                <TextView
+                    android:id="@+id/tv_sport"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/sport"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/background_color_black"/>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/length_30">
+                <TextView
+                    android:id="@+id/tv_home_team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:text="@string/home_team"/>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"/>
+                <TextView
+                    android:id="@+id/tv_awa_team"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="6"
+                    android:gravity="center"
+                    android:text="@string/away_team"/>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"/>
+                <TextView
+                    android:id="@+id/tv_competition"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="8"
+                    android:textSize="10sp"
+                    android:gravity="center"
+                    android:text="@string/competition"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/background_color_black"/>
+
+            <com.andview.refreshview.XRefreshView
+                android:id="@+id/custom_view"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+                <com.extra.widget.listview.ListViewForScrollView
+                    android:id="@+id/lv_bet"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"/>
+            </com.andview.refreshview.XRefreshView>
+
+
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_margin="@dimen/length_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clear_filters"/>
+
+                <EditText
+                    android:id="@+id/et_bet_type"
+                    android:padding="@dimen/length_10"
+                    android:background="@drawable/et_bg"
+                    android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="8"/>
+
+
+                <ImageButton
+                    android:layout_gravity="center"
+                    android:id="@+id/bt_bet_type_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_youtube_searched_for_black_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:padding="@dimen/length_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bet_forecast"/>
+                <TextView
+                    android:id="@+id/tv_bet_type_name"
+                    android:textSize="@dimen/text_font_4"
+                    android:textColor="@color/royalblue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/length_10"
+                    android:text="@string/open_sanner"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/bt_clear_bet_show"
+                    android:layout_margin="@dimen/length_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clear"/>
+                <Button
+                    android:id="@+id/bt_more"
+                    android:layout_margin="@dimen/length_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/more"
+                    android:layout_marginRight="@dimen/length_10"/>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

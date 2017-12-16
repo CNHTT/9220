@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.extra.adapter.BaseListAdapter;
 import com.extra.saas.R;
+import com.extra.saas.SubjectImageView;
 import com.extra.saas.model.SmetaBean.Photo;
 import com.extra.utils.ContextUtil;
 
@@ -34,16 +35,14 @@ public class PhotoAdapter extends BaseListAdapter<Photo> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         Glide.with(mContext).load(getItem(position).getUrl()).into(viewHolder.tvContent);
-
-
         return convertView;
     }
 
     private class ViewHolder {
-        ImageView tvContent;
+        SubjectImageView tvContent;
 
         public ViewHolder(View convertView) {
-            tvContent = (ImageView) convertView.findViewById(R.id.image);
+            tvContent = (SubjectImageView) convertView.findViewById(R.id.image);
         }
 
     }

@@ -14,15 +14,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.extra.retrofit.HttpBuilder;
-import com.extra.saas.App;
-import com.extra.saas.AppUrl;
+import com.extra.retrofit.AppUrl;
 import com.extra.saas.LoginActivity;
 import com.extra.saas.R;
-import com.extra.saas.VideoActivity;
 import com.extra.saas.model.Member;
 import com.extra.saas.result.Result;
 import com.extra.saas.result.ResultMember;
-import com.extra.saas.result.ResultVideoInfo;
 import com.extra.saas.util.JsonUtil;
 import com.extra.utils.AppManager;
 import com.extra.utils.DataUtils;

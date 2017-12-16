@@ -858,4 +858,45 @@ public class TimeUtils {
         year += String.format("%05d",i);
         return year;
     }
+
+    public static Date getBetTime(String tagName) {
+        if (tagName.equals(""))return null;
+        if (tagName.length()==8)return getBetTimeYMD(tagName);
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat df= new SimpleDateFormat("yyyyMMdd'T'HH:mm:sssss");
+        try {
+            Date d = df.parse(tagName);
+            return d;
+        } catch (ParseException e) {
+            System.out.println("20120926T03:05:00000\"");
+            tagName = tagName.substring(0,17);
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat dfe= new SimpleDateFormat("yyyyMMdd'T'HH:mm:ss");
+            try {
+                return dfe.parse(tagName);
+            } catch (ParseException e1) {
+                return new Date();
+            }
+        }
+    }
+
+    public static Date getBetTimeYMD(String chars) {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat df= new SimpleDateFormat("yyyyMMdd");
+        try {
+            Date d = df.parse(chars);
+            return d;
+        } catch (ParseException e) {
+                return new Date();
+        }
+    }
+
+    public static String getBetStrTime(Date date) {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
+        return format.format(date);
+    }
+    public static String getBetStrStartTime(Date date) {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        return format.format(date);
+    }
 }

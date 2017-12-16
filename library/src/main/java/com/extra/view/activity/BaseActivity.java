@@ -25,6 +25,7 @@ import com.extra.utils.ContextUtil;
 import com.extra.utils.SystemBarTintManager;
 import com.extra.view.impl.IBaseView;
 import com.extra.widget.dialog.DialogSure;
+import com.extra.widget.dialog.LoadingAlertDialog;
 import com.player.util.L;
 
 /**
@@ -143,12 +144,22 @@ public abstract   class BaseActivity<T extends BasePresenter<IBaseView>> extends
         });
         dialogSure.show();
     }
+    protected void showDialogSuccessToast(String toast) {
+        if (dialogSure==null)dialogSure = new DialogSure(this);
+        dialogSure.setTitle("SUCCESS");
+        dialogSure.getTvContent().setText(toast);
+        dialogSure.getTvSure().setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                dialogSure.cancel();
+            }
+        });
+        dialogSure.show();
+    }
 
-    private ProgressDialog progressDialog;
+    private LoadingAlertDialog progressDialog;
     protected void showProgressDialog(int resId) {
         if (progressDialog==null)
-            progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog = new LoadingAlertDialog(this);
         progressDialog.setMessage(getResources().getString(resId));
         if (!progressDialog.isShowing())
             progressDialog.show();

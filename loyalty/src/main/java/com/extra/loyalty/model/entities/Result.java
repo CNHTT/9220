@@ -30,6 +30,13 @@ public class Result {
     private String account_name;
     private PaginationBean pagination;
     private List<CampaignsBean> campaigns;
+    /**
+     * campaign : {"id":"6971168414799905"}
+     */
+
+    private CampaignsBean campaign;
+
+
 
 
     public AccountInfo getAccount() {
@@ -77,6 +84,14 @@ public class Result {
 
     public void setCampaigns(List<CampaignsBean> campaigns) {
         this.campaigns = campaigns;
+    }
+
+    public CampaignsBean getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(CampaignsBean campaign) {
+        this.campaign = campaign;
     }
 
     public static class PaginationBean {
@@ -198,6 +213,14 @@ public class Result {
 
         public void setReward_ratio(String reward_ratio) {
             this.reward_ratio = reward_ratio;
+        }
+
+        @Override
+        public String toString() {
+            return "CampaignsBean{" +
+                    "id='" + id + '\'' +
+                    ", name='" + name + '\'' +
+                    ", type='" + type + '\'' + '}'+"\t\r";
         }
     }
 }

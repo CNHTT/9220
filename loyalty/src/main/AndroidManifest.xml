@@ -46,7 +46,10 @@
         <activity android:name=".view.activity.CampaignsListActivity" />
         <activity android:name=".view.activity.DeactivatedCampaignsListActivity" />
         <activity android:name=".view.activity.CampaignRewardsListActivity" />
-        <activity android:name=".view.activity.CreateNewCampaignActivity"></activity>
+        <activity android:name=".view.activity.CreateNewCampaignActivity" />
+        <activity android:name=".view.activity.BusinessEmployeesActivity" />
+        <activity android:name=".view.activity.CreateNewUserActivity" />
+        <activity android:name=".view.activity.AllowedCampaignActivity"></activity>
     </application>
 
 </manifest>

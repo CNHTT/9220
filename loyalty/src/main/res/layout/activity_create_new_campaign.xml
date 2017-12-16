@@ -77,6 +77,7 @@
             android:src="@drawable/wheel_h_index"/>
 
         <LinearLayout
+            android:visibility="gone"
             android:padding="@dimen/length_10"
             android:layout_width="match_parent"
             android:id="@+id/lv_point"
@@ -131,6 +132,7 @@
         </LinearLayout>
         <LinearLayout
             android:padding="@dimen/length_10"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:id="@+id/lv_event"
             android:orientation="vertical"

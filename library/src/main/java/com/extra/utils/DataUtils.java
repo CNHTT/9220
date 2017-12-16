@@ -8,6 +8,8 @@ import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
 import android.util.SparseLongArray;
 
+import org.xml.sax.Attributes;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -1222,5 +1224,20 @@ public class DataUtils {
     public static String getPercentValue(double value) {
         BigDecimal result = new BigDecimal(value);
         return getPercentValue(result, 2);
+    }
+
+    public static long getNumberLong(String ee, Attributes attributes) {
+        String l = attributes.getValue(ee);
+        return l ==null?-1: Long.parseLong(l);
+    }
+
+    public static String getNumberString(String e, Attributes attributes) {
+        String l = attributes.getValue(e);
+        return l ==null?"": l;
+    }
+
+    public static double getNumberDouble(String ee, Attributes attributes) {
+        String l = attributes.getValue(ee);
+        return l ==null?-1: Double.parseDouble(l);
     }
 }

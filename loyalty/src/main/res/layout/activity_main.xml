@@ -36,6 +36,18 @@
             android:textColor="@color/black"
             android:background="@drawable/main_bottom"/>
         <TextView
+            android:id="@+id/tv_business_employees"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_font_10"
+            android:text="@string/business_employees"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black"
+            android:background="@drawable/main_bottom"/>
+        <TextView
             android:id="@+id/tv_login_out"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

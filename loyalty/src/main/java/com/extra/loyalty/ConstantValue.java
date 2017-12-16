@@ -21,6 +21,7 @@ public class ConstantValue {
     public static final String POINTS_RATIO = "points_ratio";
     public static final String REWARD_RATIO = "reward_ratio";
     public static final String CAMPAIGN_NAME = "campaign_name";
+    public static final String CAMPAIGN_STR = "CAMPAIGN_STR";
     public static String USER_ID_VALUE ="" ;
     public static String USER_API_KEY_VALUE="";
     public static  String ACCOUNT_ID_VALUE = "greatwidgets";

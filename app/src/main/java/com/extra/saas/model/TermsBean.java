@@ -1,10 +1,12 @@
 package com.extra.saas.model;
 
+import java.io.Serializable;
+
 /**
  * Created by 戴尔 on 2017/11/16.
  */
 
-public class TermsBean {
+public class TermsBean implements Serializable {
     private String term_id;
     private String name;
     private String slug;

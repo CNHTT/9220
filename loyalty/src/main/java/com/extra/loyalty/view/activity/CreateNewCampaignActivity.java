@@ -92,6 +92,12 @@ public class CreateNewCampaignActivity extends BaseActivity {
 
     @Override
     public void bindView(Bundle savedInstanceState) {
+
+
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         list = Arrays.asList(getResources().getStringArray(R.array.type_restrict));
         adapter = new ArrayWheelAdapter<String>(this, getResources().getStringArray(R.array.type_restrict_value));
         adapter.setItemResource(R.layout.layout_wheel_type);
@@ -125,13 +131,13 @@ public class CreateNewCampaignActivity extends BaseActivity {
     private void showView() {
         switch (type){
             case "points":
-                lvEvent.setVisibility(View.VISIBLE);
-                lvPoint.setVisibility(View.GONE);
+                lvEvent.setVisibility(View.GONE);
+                lvPoint.setVisibility(View.VISIBLE);
                 break;
 
             case "earned":
-                lvPoint.setVisibility(View.VISIBLE);
-                lvEvent.setVisibility(View.GONE);
+                lvPoint.setVisibility(View.GONE);
+                lvEvent.setVisibility(View.VISIBLE);
                 break;
             default:
                 lvEvent.setVisibility(View.GONE);
@@ -187,7 +193,12 @@ public class CreateNewCampaignActivity extends BaseActivity {
                     cancleProgressDialog();
                     Result result  = (Result) JsonUtil.stringToObject(s,Result.class);
                     if (result.checkResult()){
-
+                        showDialogSuccessToast("Campaign Id:"+result.getCampaign().getId());
+                        etAmountPerEvent.setText("");
+                        etCampaignName.setText("");
+                        etDescription.setText("");
+                        etPointsRatio.setText("");
+                        etRewardRatio.setText("");
                     }else {
                         showDialogToast(result.getError());
                     }

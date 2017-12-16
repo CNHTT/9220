@@ -3,7 +3,6 @@ package com.extra.saas;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -21,6 +20,7 @@ import android.widget.ScrollView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.extra.retrofit.AppUrl;
 import com.extra.retrofit.HttpBuilder;
 import com.extra.retrofit.HttpUtil;
 import com.extra.saas.result.Result;

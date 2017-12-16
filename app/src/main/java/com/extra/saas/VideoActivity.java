@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.devlin_n.floatWindowPermission.FloatWindowManager;
 import com.devlin_n.videoplayer.controller.StandardVideoController;
 import com.devlin_n.videoplayer.player.IjkVideoView;
+import com.extra.retrofit.AppUrl;
 import com.extra.retrofit.HttpBuilder;
 import com.extra.saas.adapter.PhotoAdapter;
 import com.extra.saas.model.SmetaBean;
@@ -189,7 +190,7 @@ public class VideoActivity extends BaseActivity {
             case R.id.tv_hits:
                 break;
             case R.id.tv_like:
-                if (DataUtils.isNullString(SPUtils.getString(this,AppUrl.Voucher)))
+                if (DataUtils.isNullString(SPUtils.getString(this, AppUrl.Voucher)))
                 {
                     startActivity(new Intent(this,LoginActivity.class));
                     return;

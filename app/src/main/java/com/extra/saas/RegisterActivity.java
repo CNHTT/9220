@@ -15,12 +15,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import com.extra.retrofit.AppUrl;
 import com.extra.retrofit.HttpBuilder;
 import com.extra.saas.result.Result;
 import com.extra.saas.result.ResultLogin;
 import com.extra.saas.util.JsonUtil;
 import com.extra.utils.AppManager;
-import com.extra.utils.DataUtils;
 import com.extra.utils.SPUtils;
 import com.extra.utils.StatusBarUtil;
 import com.extra.utils.ToastUtils;

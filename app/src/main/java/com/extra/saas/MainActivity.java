@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.extra.retrofit.AppUrl;
 import com.extra.saas.fragment.FreeZoneFragment;
 import com.extra.saas.fragment.UserFragment;
 import com.extra.saas.fragment.VipZoneFragment;
@@ -135,7 +136,7 @@ public class MainActivity extends BaseActivity {
                 }
                 break;
             case R.id.txt_user:
-                if (DataUtils.isNullString(SPUtils.getString(this,AppUrl.Voucher)))
+                if (DataUtils.isNullString(SPUtils.getString(this, AppUrl.Voucher)))
                 {
                     startActivity(new Intent(this,LoginActivity.class));
                     return;

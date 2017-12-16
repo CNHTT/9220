@@ -83,6 +83,7 @@ public abstract class  BaseListAdapter<T> extends BaseAdapter {
      */
     public void addItems(List<T> items) {
         mDatas.addAll(items);
+        notifyDataSetChanged();
     }
 
     /**
