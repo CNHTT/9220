@@ -2,8 +2,10 @@ package com.odd.sportal.handler;
 
 import com.extra.utils.DataUtils;
 import com.extra.utils.TimeUtils;
-import com.odd.sportal.model.EvtLiveModel;
+import com.odd.sportal.inter.CallBackSuccess;
+import com.odd.sportal.model.EventLiveModel;
 import com.odd.sportal.utils.BaseHandler;
+import com.odd.sportal.utils.DbHelper;
 import com.player.util.L;
 
 import org.xml.sax.Attributes;
@@ -14,7 +16,14 @@ import org.xml.sax.SAXException;
  * Created by 戴尔 on 2017/12/14.
  */
 
-public class EvtLiveHandler extends BaseHandler {
+public class EventLiveHandler extends BaseHandler {
+
+    CallBackSuccess callBackSuccess;
+
+    public EventLiveHandler(CallBackSuccess callBackSuccess) {
+        this.callBackSuccess = callBackSuccess;
+    }
+
     @Override
     public boolean parse(String xmlString) {
         try {
@@ -34,6 +43,7 @@ public class EvtLiveHandler extends BaseHandler {
     @Override
     public void endDocument() throws SAXException {
         L.d("endDocument");
+        callBackSuccess.gameEnd();
     }
 
     @Override
@@ -51,7 +61,7 @@ public class EvtLiveHandler extends BaseHandler {
 
         try {
             if (qName.equals("ROW")){
-                EvtLiveModel object = new EvtLiveModel();
+                EventLiveModel object = new EventLiveModel();
                 object.setEVENT_ID(DataUtils.getNumberLong("EVENT_ID",attributes));
                 object.setEVENT_CODE(DataUtils.getNumberLong("EVENT_CODE",attributes));
                 object.setBET_START_DATE(TimeUtils.getBetTime(attributes.getValue("BET_START_DATE")));
@@ -78,7 +88,7 @@ public class EvtLiveHandler extends BaseHandler {
                 object.setHANDICAP2(DataUtils.getNumberDouble("HANDICAP2",attributes));
 
                 object.setET_NAME(DataUtils.getNumberString("ET_NAME",attributes));
-                object.setEt_code(DataUtils.getNumberString("et_code",attributes));
+                object.setET_CODE(DataUtils.getNumberString("ET_CODE",attributes));
                 object.setET_DESCR_EN(DataUtils.getNumberString("ET_DESCR_EN",attributes));
                 object.setTNAME(DataUtils.getNumberString("TNAME",attributes));
 
@@ -89,7 +99,7 @@ public class EvtLiveHandler extends BaseHandler {
 
 
                 object.setFILE_NAME(DataUtils.getNumberString("FILE_NAME",attributes));
-                object.setIsPlayed(DataUtils.getNumberLong("isPlayed",attributes));
+                object.setISPLAYED(DataUtils.getNumberLong("ISPLAYED",attributes));
                 object.setLIVE_DT(TimeUtils.getBetTime(attributes.getValue("LIVE_DT")));
                 object.setDISCIPLINE_ID(DataUtils.getNumberLong("DISCIPLINE_ID",attributes));
 
@@ -97,13 +107,7 @@ public class EvtLiveHandler extends BaseHandler {
                 object.setSPORT_ORDER(DataUtils.getNumberLong("SPORT_ORDER",attributes));
                 object.setANTEPOST(DataUtils.getNumberLong("ANTEPOST",attributes));
                 object.setTOURN_ORDER(DataUtils.getNumberLong("TOURN_ORDER",attributes));
-
-
-
-
-
-
-
+                DbHelper.insertEventLive(object);
 
 
             }

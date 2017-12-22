@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">scan</string>
+    <string name="login">LOGIN</string>
+    <string name="user_name">USER NAME</string>
+    <string name="password">PASSWORD</string>
+    <string name="shopcart">Shopping Cart</string>
+    <string name="clear">Submit</string>
+    <string name="trading">Trading</string>
+
+
+
+    <string name="scan_barcode_title">ZebraScan</string>
+    <string name="scan_qrcode_title">qr code Scan</string>
+    <string name="scan_allcode_title">Qr code or barcode scanning</string>
+    <string name="scan_barcode_hint">The bar code is automatically scanned into the frame</string>
+    <string name="scan_qrcode_hint">The bar code is automatically scanned into the frame</string>
+    <string name="scan_allcode_hint">The bar code is automatically scanned into the frame</string>
+    <string name="carry_on">Carry On</string>
+    <string name="create_new_shop">Create New Shop</string>
+    <string name="shop_name">Shop Name</string>
+    <string name="shop_sn">Item No.</string>
+    <string name="num">Quantity</string>
+    <string name="price">Price</string>
+    <string name="add_inv">Add Inv</string>
+
+</resources>

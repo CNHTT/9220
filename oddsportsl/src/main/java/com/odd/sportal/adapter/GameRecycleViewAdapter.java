@@ -26,8 +26,8 @@ public class GameRecycleViewAdapter extends BaseRecycleAdapter<GameModel> {
     @Override
     protected void bindData(BaseViewHolder holder, int position) {
         GameModel gameModel = datas.get(position);
-        ((TextView)holder.getView(R.id.v_game_descr)).setText(gameModel.getGAME_DESCR());
-        ((TextView)holder.getView(R.id.v_chart_descr)).setText(gameModel.getCHART_DESCR());
+        ((TextView)holder.getView(R.id.v_game_descr)).setText(gameModel.getGAME_NAME());
+        ((TextView)holder.getView(R.id.v_chart_descr)).setText(gameModel.getFC_TYPE());
         ((LinearLayout)holder.getView(R.id.ll_game_view)).setOnClickListener(v ->{
             listner.getBetGameBean(gameModel);
         });

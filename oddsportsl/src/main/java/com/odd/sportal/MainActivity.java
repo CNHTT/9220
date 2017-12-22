@@ -7,28 +7,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.extra.presenter.BasePresenter;
-import com.extra.utils.SPUtils;
 import com.extra.utils.StatusBarUtil;
-import com.extra.utils.ToastUtils;
 import com.extra.view.activity.BaseActivity;
-import com.odd.sportal.handler.EventHandler;
-import com.odd.sportal.handler.ForecastsHandler;
-import com.odd.sportal.handler.GameHandler;
-import com.odd.sportal.model.GameModel;
-import com.odd.sportal.service.ParseXmlService;
-import com.odd.sportal.utils.BaseHandler;
-import com.odd.sportal.utils.DbHelper;
 
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity {
 
@@ -92,14 +77,14 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initData() {
-        boolean isloading = SPUtils.getBoolean(this,ContextValue.ISLOADING);
-        if (!isloading)
-        if (!SPUtils.getBoolean(this,ContextValue.ISLOADDATA)){
-//            loadData();
-            ToastUtils.showToast("Data loading, please do not kill this app");
-            Intent intent=new Intent(this,ParseXmlService.class);
-            startService(intent);
-        }
+//        boolean isloading = SPUtils.getBoolean(this,ContextValue.ISLOADING);
+//        if (!isloading)
+//        if (!SPUtils.getBoolean(this,ContextValue.ISLOADDATA)){
+////            loadData();
+//            ToastUtils.showToast("Data loading, please do not kill this app");
+//            Intent intent=new Intent(this,ParseXmlService.class);
+//            startService(intent);
+//        }
 
 
 

@@ -48,7 +48,7 @@ public class GameHandler extends BaseHandler {
 
     @Override
     public void endDocument() throws SAXException {
-        L.d("endDocument");
+        L.d(TAG+"endDocument");
         callBackSuccess.gameEnd();
     }
 
@@ -58,39 +58,46 @@ public class GameHandler extends BaseHandler {
 
     @Override
     public void startDocument() throws SAXException {
-        L.d("startDocument： ");
+        L.d(TAG+"startDocument： ");
     }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
-        if(qName.equals("ROW")){
-            GameModel object = new GameModel();
-            object.setID(DataUtils.getNumberLong("ID",attributes));
-            object.setEVENT_ID(DataUtils.getNumberLong("EVENT_ID",attributes));
-            object.setGAME_ID(DataUtils.getNumberLong("GAME_ID",attributes));
-            object.setSTATUS(DataUtils.getNumberLong("STATUS",attributes));
+        try {
+            if(qName.equals("ROW")){
+                GameModel object = new GameModel();
+                object.setID(DataUtils.getNumberLong("ID",attributes));
+                object.setEVENT_ID(DataUtils.getNumberLong("EVENT_ID",attributes));
+                object.setGAME_ID(DataUtils.getNumberLong("GAME_ID",attributes));
+                object.setSTATUS(DataUtils.getNumberLong("STATUS",attributes));
 
-            object.setSTART_DATE(TimeUtils.getBetTime(attributes.getValue("START_DATE")));
-            object.setEND_DATE(TimeUtils.getBetTime(attributes.getValue("END_DATE")));
-            object.setEE(DataUtils.getNumberLong("EE",attributes));
-            object.setGAME_DESCR(DataUtils.getNumberString("GAME_DESCR",attributes));
+                if (attributes.getValue("START_DATE")!=null)
+                    object.setSTART_DATE(TimeUtils.getBetTime(attributes.getValue("START_DATE")));
+                if (attributes.getValue("END_DATE")!=null)
+                    object.setEND_DATE(TimeUtils.getBetTime(attributes.getValue("END_DATE")));
+                object.setEE(DataUtils.getNumberLong("EE",attributes));
+                object.setGAME_DESCR(DataUtils.getNumberString("GAME_DESCR",attributes));
 
-            object.setGAME_ORDER(DataUtils.getNumberLong("GAME_ORDER",attributes));
-            object.setHANDICAP1(DataUtils.getNumberDouble("HANDICAP1",attributes));
-            object.setCHART_NAME(DataUtils.getNumberString("CHART_NAME",attributes));
-            object.setSPECIAL(DataUtils.getNumberLong("SPECIAL",attributes));
+                object.setGAME_ORDER(DataUtils.getNumberLong("GAME_ORDER",attributes));
+                object.setHANDICAP1(DataUtils.getNumberDouble("HANDICAP1",attributes));
+                object.setCHART_NAME(DataUtils.getNumberString("CHART_NAME",attributes));
+                object.setSPECIAL(DataUtils.getNumberLong("SPECIAL",attributes));
 
-            object.setISLIVE(DataUtils.getNumberLong("ISLIVE",attributes));
-            object.setSC1(DataUtils.getNumberLong("SC1",attributes));
-            object.setCHART_DESCR(DataUtils.getNumberString("CHART_DESCR",attributes));
-            object.setSC2(DataUtils.getNumberLong("SC2",attributes));
+                object.setISLIVE(DataUtils.getNumberLong("ISLIVE",attributes));
+                object.setSC1(DataUtils.getNumberLong("SC1",attributes));
+                object.setCHART_DESCR(DataUtils.getNumberString("CHART_DESCR",attributes));
+                object.setSC2(DataUtils.getNumberLong("SC2",attributes));
 
-            object.setDISPLAY_FLAG(DataUtils.getNumberLong("DISPLAY_FLAG",attributes));
-            object.setGAME_NAME(DataUtils.getNumberString("GAME_NAME",attributes));
-            object.setFC_TYPE(DataUtils.getNumberString("FC_TYPE",attributes));
-            DbHelper.insertNewGameModel(object);
+                object.setDISPLAY_FLAG(DataUtils.getNumberLong("DISPLAY_FLAG",attributes));
+                object.setGAME_NAME(DataUtils.getNumberString("GAME_NAME",attributes));
+                object.setFC_TYPE(DataUtils.getNumberString("FC_TYPE",attributes));
+                DbHelper.insertNewGameModel(object);
 
+            }
+        }catch (Exception e){
+            L.d("GAME  "+e.getMessage());
         }
+
     }
 }

@@ -1228,16 +1228,16 @@ public class DataUtils {
 
     public static long getNumberLong(String ee, Attributes attributes) {
         String l = attributes.getValue(ee);
-        return l ==null?-1: Long.parseLong(l);
+        return l ==null?-1: Long.parseLong(l.replace(" ",""));
     }
 
     public static String getNumberString(String e, Attributes attributes) {
         String l = attributes.getValue(e);
-        return l ==null?"": l;
+        return l ==null?"": l.replace(" ","");
     }
 
     public static double getNumberDouble(String ee, Attributes attributes) {
         String l = attributes.getValue(ee);
-        return l ==null?-1: Double.parseDouble(l);
+        return l ==null?-1: Double.parseDouble(l.replace(" ",""));
     }
 }

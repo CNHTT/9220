@@ -31,15 +31,22 @@ import com.extra.widget.RunTextView;
 import com.extra.widget.dialog.BaseDialog;
 import com.extra.widget.listview.ListViewForScrollView;
 import com.odd.sportal.adapter.BetAdapter;
+import com.odd.sportal.adapter.EventLiveModelAdapter;
 import com.odd.sportal.adapter.EventModelAdapter;
+import com.odd.sportal.adapter.ForecastsLiveRecycleViewAdapter;
 import com.odd.sportal.adapter.ForecastsRecycleViewAdapter;
+import com.odd.sportal.adapter.GameLiveRecycleViewAdapter;
 import com.odd.sportal.adapter.GameRecycleViewAdapter;
 import com.odd.sportal.inter.OnBetAdapterListener;
 import com.odd.sportal.inter.OnEventAdapterListener;
+import com.odd.sportal.inter.OnEventLiveAdapterListener;
 import com.odd.sportal.inter.OnLoadMoreEventListener;
 import com.odd.sportal.model.BetBean;
+import com.odd.sportal.model.BetForecastsLiveModel;
 import com.odd.sportal.model.BetForecastsModel;
+import com.odd.sportal.model.EventLiveModel;
 import com.odd.sportal.model.EventModel;
+import com.odd.sportal.model.GameLiveModel;
 import com.odd.sportal.model.GameModel;
 import com.odd.sportal.utils.DbHelper;
 
@@ -50,7 +57,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class InsertNewBetActivity extends BaseActivity implements  OnEventAdapterListener {
+public class InsertNewBetActivity extends BaseActivity implements  OnEventAdapterListener, OnEventLiveAdapterListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -90,6 +97,8 @@ public class InsertNewBetActivity extends BaseActivity implements  OnEventAdapte
     Button btMore;
     @BindView(R.id.custom_view)
     XRefreshView customView;
+
+    boolean isLive =false;
 
     @Override
     protected Toolbar getToolBar() {
@@ -138,8 +147,14 @@ public class InsertNewBetActivity extends BaseActivity implements  OnEventAdapte
         etTeam.setText("");
         eventTeamLike="";
         eventOffset=1;
-        eventModelList  = DbHelper.loadEventList(0);
-        eventModelAdapter.updateItems(eventModelList);
+        if (isLive){
+
+            eventLiveModels  = DbHelper.loadEventLiveList(0);
+            eventLiveModelAdapter.updateItems(eventLiveModels);
+        }else {
+            eventModelList  = DbHelper.loadEventList(0);
+            eventModelAdapter.updateItems(eventModelList);
+        }
     }
 
 
@@ -149,7 +164,7 @@ public class InsertNewBetActivity extends BaseActivity implements  OnEventAdapte
         eventId  = etSn.getText().toString();
         eventTeamLike = etTeam.getText().toString();
 
-        if (!DataUtils.isNullString(eventId)||!DataUtils.isNullString(eventTeamLike)){
+        if (DataUtils.isNullString(eventId)&&DataUtils.isNullString(eventTeamLike)){
             showDialogSuccessToast("Please Input Event ID  || Team Name");
             return;
         }
@@ -166,7 +181,7 @@ public class InsertNewBetActivity extends BaseActivity implements  OnEventAdapte
 
             DbHelper.loadMoreEventList(0,eventTeamLike,list1 -> {
 
-                if (list.size()!=0){eventModelAdapter.updateItems(list1);eventOffset=0;}
+                if (list1.size()!=0){eventModelAdapter.updateItems(list1);eventOffset=0;}
             });
         }
     }
@@ -195,56 +210,10 @@ public class InsertNewBetActivity extends BaseActivity implements  OnEventAdapte
     int eventOffset = 0;
     private List<EventModel> eventModelList;
     private EventModelAdapter eventModelAdapter;
+
+    private List<EventLiveModel> eventLiveModels;
+    private EventLiveModelAdapter eventLiveModelAdapter;
     private void initData() {
-//
-//        DbHelper.deleteGameAll();
-//        DbHelper.deleteEventAll();
-//        DbHelper.deleteForecastsAll();
-//        BaseHandler handler = new ForecastsHandler();
-//        handler.parse("BetForecasts.xml");
-//
-//        BaseHandler handler1 = new GameHandler();
-//        handler1.parse("BetGames.xml");
-
-
-//        io.reactivex.Observable.create(new ObservableOnSubscribe<Integer>() {
-//            @Override
-//            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-//                e.onNext(1);
-//                e.onNext(2);
-//                e.onNext(3);
-//                e.onComplete();
-//            }
-//        }).subscribeOn(Schedulers.newThread()).subscribe(new Observer<Integer>() {
-//            @Override
-//            public void onSubscribe(Disposable d) {
-//
-//            }
-//            @Override
-//            public void onNext(Integer value) {
-//                switch (value){
-//                    case 1:
-//                        BaseHandler handler2 = new EventHandler();
-//                        handler2.parse("BetEvents.xml");
-//                        break;
-//                    case 2:BaseHandler handler1 = new GameHandler();
-//                        handler1.parse("BetGames.xml");
-//                        break;
-//                    case 3:BaseHandler handler = new ForecastsHandler();
-//                        handler.parse("BetForecasts.xml");
-//                        break;
-//                }
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//            }
-//
-//            @Override
-//            public void onComplete() {
-//            }
-//        });
-
         etTeam.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -262,10 +231,18 @@ public class InsertNewBetActivity extends BaseActivity implements  OnEventAdapte
             }
         });
 
-        eventModelList  = DbHelper.loadEventList(0);
+        if (isLive){
+            eventLiveModels  = DbHelper.loadEventLiveList(0);
+            eventLiveModelAdapter= new EventLiveModelAdapter(this,eventLiveModels,this);
+            lvBet.setAdapter(eventLiveModelAdapter);
+        }else {
+            eventModelList  = DbHelper.loadEventList(0);
+            eventModelAdapter = new EventModelAdapter(this, eventModelList, this);
+            lvBet.setAdapter(eventModelAdapter);
+        }
 
-        eventModelAdapter = new EventModelAdapter(this, eventModelList, this);
-        lvBet.setAdapter(eventModelAdapter);
+
+
         customView.setPullRefreshEnable(true);
         // 设置是否可以上拉加载
         customView.setPullLoadEnable(true);
@@ -280,21 +257,38 @@ public class InsertNewBetActivity extends BaseActivity implements  OnEventAdapte
             public void onRefresh(boolean isPullDown) {
 
                 eventOffset=1;
-                eventModelList  = DbHelper.loadEventList(0);
-                eventModelAdapter.updateItems(eventModelList);
+
+                if (isLive){
+
+                    eventLiveModels  = DbHelper.loadEventLiveList(0);
+                    eventLiveModelAdapter.updateItems(eventLiveModels);
+                }else {
+                    eventModelList  = DbHelper.loadEventList(0);
+                    eventModelAdapter.updateItems(eventModelList);
+                }
 
                 new Handler().postDelayed(() -> {
                     customView.stopRefresh();
                     lastRefreshTime = customView.getLastRefreshTime();
-                }, 2000);
+                }, 500);
             }
 
             @Override
             public void onLoadMore(boolean isSilence) {
-                DbHelper.loadMoreEventList(eventOffset, eventTeamLike,list -> {
-                    if (list.size()!=0){eventModelAdapter.addItems(list);eventOffset++;}
-                    customView.stopLoadMore();
-                });
+                if (isLive){
+                    DbHelper.loadMoreEventLiveList(eventOffset, eventTeamLike,list -> {
+                        if (list.size()!=0){eventLiveModelAdapter.addItems(list);eventOffset++;}
+                        customView.stopLoadMore();
+                    });
+                }else {
+                    DbHelper.loadMoreEventList(eventOffset, eventTeamLike,list -> {
+                        if (list.size()!=0){eventModelAdapter.addItems(list);eventOffset++;}
+                        customView.stopLoadMore();
+                    });
+                }
+
+
+
             }
 
             @Override
@@ -354,8 +348,12 @@ public class InsertNewBetActivity extends BaseActivity implements  OnEventAdapte
         }
 
         gameRecycleViewAdapter =   new GameRecycleViewAdapter(gameModelList, bean1 -> {
-          List<BetForecastsModel> list =    DbHelper.loadForecastsList(bean1);
-            ForecastsRecycleViewAdapter forecastsRecycleViewAdapter = new ForecastsRecycleViewAdapter(list);
+//          List<BetForecastsModel> list =    DbHelper.loadForecastsList(bean1);
+//            ForecastsRecycleViewAdapter forecastsRecycleViewAdapter = new ForecastsRecycleViewAdapter(list);
+//            mRv_Forecasts.setAdapter(forecastsRecycleViewAdapter);
+
+            List<BetForecastsLiveModel> list =    DbHelper.loadForecastsListTest(bean1);
+            ForecastsLiveRecycleViewAdapter forecastsRecycleViewAdapter = new ForecastsLiveRecycleViewAdapter(list);
             mRv_Forecasts.setAdapter(forecastsRecycleViewAdapter);
 
         });
@@ -384,5 +382,51 @@ public class InsertNewBetActivity extends BaseActivity implements  OnEventAdapte
 
         if (!gameDialog.isShowing())gameDialog.show();
 
+    }
+
+
+    private List<GameLiveModel> gameLiveModels;
+    private GameLiveRecycleViewAdapter gameLiveRecycleViewAdapter;
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void getEventLiveBean(EventLiveModel bean) {
+        toolbar.setSubtitle(bean.getTEAM1_NAME() + "-" + bean.getTEAM2_NAME());
+        tvTeamName.setText(bean.getTEAM1_NAME() + "-" + bean.getTEAM2_NAME());
+        gameLiveModels = DbHelper.loadGameLiveByEventId(bean.getEVENT_ID());
+        if (gameLiveModels.size() ==0){
+            showDialogSuccessToast("This Event No Game");
+            return;
+        }
+
+        gameLiveRecycleViewAdapter =   new GameLiveRecycleViewAdapter(gameLiveModels, bean1 -> {
+            List<BetForecastsLiveModel> list =    DbHelper.loadForecastsLiveList(bean1);
+            ForecastsLiveRecycleViewAdapter forecastsRecycleViewAdapter = new ForecastsLiveRecycleViewAdapter(list);
+            mRv_Forecasts.setAdapter(forecastsRecycleViewAdapter);
+
+        });
+
+
+        if (gameDialog==null){
+            gameDialog = new BaseDialog(this,R.style.AlertDialogStyle);
+            View gView = ContextUtil.inflate(this,R.layout.dialog_game_layout);
+            gameDialog.setContentView(gView);
+            gameDialog.setCancelable(false);
+            mEt_bet_type = (EditText)gView. findViewById(R.id.et_bet_type);
+            mBt_bet_type_search = (ImageButton) gView.findViewById(R.id.bt_bet_type_search);
+            mRv_game = (RecyclerView) gView.findViewById(R.id.rv_game);
+            mRv_Forecasts = (RecyclerView) gView.findViewById(R.id.rv_Forecasts);
+            //设置布局管理器 , 将布局设置成纵向
+            LinearLayoutManager linerLayoutManager = new GridLayoutManager(this, 3);
+            LinearLayoutManager linerLayoutManager2 = new GridLayoutManager(this, 3);
+            mRv_game.setLayoutManager(linerLayoutManager);
+            mRv_Forecasts.setLayoutManager(linerLayoutManager2);
+            gView.findViewById(R.id.btn_cancel).setOnClickListener( v ->{
+                gameDialog.cancel();
+            });
+        }
+
+        mRv_game.setAdapter(gameRecycleViewAdapter);
+
+        if (!gameDialog.isShowing())gameDialog.show();
     }
 }

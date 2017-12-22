@@ -41,15 +41,15 @@ public class BetForecastsModel implements Serializable {
     private  long FORDER;
     private long FC_UID;
 
-    private double ODDS_NORMA;
+    private double ODDS_NORMAL;
     private double FC_PARAM;
-    @Generated(hash = 75527198)
+    @Generated(hash = 1903951645)
     public BetForecastsModel(Long id, long ID, long EVENT_ID, long GAME_ID,
             long FORECAST_CD, String DESCR, double ODDS, long FC_STATUS,
             long FC_WIN, long REV_ID, long ODDS_CHANGED, long ISCURRENT,
             Date FC_FROM, Date FC_TO, long TEAM_ID, long FC_PLAYER_ID,
             String DESCR_EN, String FC_NAME, String DESCR_LOCAL, long FORDER,
-            long FC_UID, double ODDS_NORMA, double FC_PARAM) {
+            long FC_UID, double ODDS_NORMAL, double FC_PARAM) {
         this.id = id;
         this.ID = ID;
         this.EVENT_ID = EVENT_ID;
@@ -71,7 +71,7 @@ public class BetForecastsModel implements Serializable {
         this.DESCR_LOCAL = DESCR_LOCAL;
         this.FORDER = FORDER;
         this.FC_UID = FC_UID;
-        this.ODDS_NORMA = ODDS_NORMA;
+        this.ODDS_NORMAL = ODDS_NORMAL;
         this.FC_PARAM = FC_PARAM;
     }
     @Generated(hash = 633495807)
@@ -203,11 +203,11 @@ public class BetForecastsModel implements Serializable {
     public void setFC_UID(long FC_UID) {
         this.FC_UID = FC_UID;
     }
-    public double getODDS_NORMA() {
-        return this.ODDS_NORMA;
+    public double getODDS_NORMAL() {
+        return this.ODDS_NORMAL;
     }
-    public void setODDS_NORMA(double ODDS_NORMA) {
-        this.ODDS_NORMA = ODDS_NORMA;
+    public void setODDS_NORMAL(double ODDS_NORMAL) {
+        this.ODDS_NORMAL = ODDS_NORMAL;
     }
     public double getFC_PARAM() {
         return this.FC_PARAM;
@@ -215,5 +215,7 @@ public class BetForecastsModel implements Serializable {
     public void setFC_PARAM(double FC_PARAM) {
         this.FC_PARAM = FC_PARAM;
     }
+
+   
 
 }

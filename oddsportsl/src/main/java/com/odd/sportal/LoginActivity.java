@@ -2,33 +2,26 @@ package com.odd.sportal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.extra.presenter.BasePresenter;
-import com.extra.retrofit.HttpBuilder;
+import com.extra.utils.SPUtils;
 import com.extra.utils.StatusBarUtil;
+import com.extra.utils.ToastUtils;
 import com.extra.view.activity.BaseActivity;
-import com.odd.sportal.webservice.RetrofitGenerator;
-import com.odd.sportal.webservice.request.RequestBody;
-import com.odd.sportal.webservice.request.RequestEnvelope;
-import com.odd.sportal.webservice.request.RequestModel;
-import com.odd.sportal.webservice.response.ResponseEnvelope;
-import com.player.util.L;
+import com.odd.sportal.service.ParseXmlService;
 
-import java.util.List;
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LoginActivity extends BaseActivity {
 
@@ -62,6 +55,14 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initWindow() {
+        boolean isloading = SPUtils.getBoolean(this,ContextValue.ISLOADING);
+        if (!isloading)
+            if (!SPUtils.getBoolean(this,ContextValue.ISLOADDATA)){
+//            loadData();
+                ToastUtils.showToast("Data loading, please do not kill this app");
+                Intent intent=new Intent(this,ParseXmlService.class);
+                startService(intent);
+            }
 
     }
 
@@ -80,29 +81,7 @@ public class LoginActivity extends BaseActivity {
 
     private void test() {
 
-        RequestEnvelope requestEnvelop = new RequestEnvelope();
-        RequestBody requestBody = new RequestBody();
-        RequestModel requestModel = new RequestModel();
-        requestModel.theCityName = "深圳";
-        requestModel.cityNameAttribute = "http://WebXml.com.cn/";
-        requestBody.getWeatherbyCityName = requestModel;
-        requestEnvelop.body = requestBody;
-        Call<ResponseEnvelope> call = RetrofitGenerator.getWeatherInterfaceApi().getWeatherbyCityName(requestEnvelop);
-        call.enqueue(new Callback<ResponseEnvelope>() {
-            @Override
-            public void onResponse(Call<ResponseEnvelope> call, Response<ResponseEnvelope> response) {
-                ResponseEnvelope responseEnvelope = response.body();
-                if (responseEnvelope != null ) {
-                    L.d(responseEnvelope.body.getWeatherbyCityNameResponse.result.get(0).toString());
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseEnvelope> call, Throwable t) {
-
-            }
-
-        });
 
     }
 
@@ -127,5 +106,14 @@ public class LoginActivity extends BaseActivity {
     @Override
     public int getContentLayout() {
         return R.layout.activity_login;
+    }
+    private String getSDCardPath(){
+        File sdcardDir = null;
+        //判断SDCard是否存在
+        boolean sdcardExist = Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
+        if(sdcardExist){
+            sdcardDir = Environment.getExternalStorageDirectory();
+        }
+        return sdcardDir.toString();
     }
 }

@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.extra.retrofit.interfaces.Error;
 import com.extra.retrofit.interfaces.Progress;
 import com.extra.retrofit.interfaces.Success;
+import com.extra.retrofit.interfaces.SuccessBuffer;
 import com.extra.retrofit.utils.NetUtils;
 import com.extra.retrofit.utils.WriteFileUtil;
 
@@ -35,8 +36,10 @@ public class HttpBuilder {
     Map<String, String> headers = new HashMap<>();
     String url;
     String path;
+    String betStr;
     Error mErrorCallBack;
     Success mSuccessCallBack;
+    SuccessBuffer successBuffer;
     Progress mProgressListener;
     Object tag;
     Context mContext;
@@ -60,6 +63,10 @@ public class HttpBuilder {
 
     public HttpBuilder path(@NonNull String path) {
         this.path = path;
+        return this;
+    }
+    public HttpBuilder postBet(@NonNull String betStr) {
+        this.betStr = betStr;
         return this;
     }
 
@@ -91,6 +98,12 @@ public class HttpBuilder {
     @CheckResult
     public HttpBuilder success(@NonNull Success success) {
         this.mSuccessCallBack = success;
+        return this;
+    }
+
+    @CheckResult
+    public HttpBuilder successBuffter(@NonNull SuccessBuffer success) {
+        this.successBuffer = success;
         return this;
     }
 
@@ -230,6 +243,54 @@ public class HttpBuilder {
             }
         });
     }
+    public void postIBetApi() {
+        if (!allready()) {
+            return;
+        }
+
+        this.headers.put(Constant.DOWNLOAD, Constant.DOWNLOAD);
+        Call call = HttpUtil.getService().postBet(checkHeaders(headers),checkUrl(this.url),betStr);
+        putCall(tag, url, call);
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                if (response.code() == 200) {
+//                    mSuccessCallBack.Success(response.body());
+//                } else {
+//                    mErrorCallBack.Error(message(response.message()));
+//                }
+//                if (tag != null)
+//                    HttpUtil.removeCall(url);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                t.printStackTrace();
+//                mErrorCallBack.Error(message(t.getMessage()));
+//                if (tag != null)
+//                    HttpUtil.removeCall(url);
+//            }
+//        });
+        Observable<ResponseBody> observable = Observable.create(subscriber -> {
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            subscriber.onNext(response.body());
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            mErrorCallBack.Error(t);
+                        }
+                    });
+                }
+        );
+        observable.observeOn(Schedulers.io())
+                .subscribe(body -> WriteFileUtil.writeFile(body, path, mProgressListener, mSuccessCallBack, mErrorCallBack), t -> {
+                            mErrorCallBack.Error(t);
+                        }
+                );
+    }
 
     public Observable<ResponseBody> Obdownload() {
         this.url = checkUrl(this.url);
@@ -283,8 +344,7 @@ public class HttpBuilder {
 
     @CheckResult
     public Observable<String> Obput() {
-        return HttpUtil.getService().Obput(checkUrl(this.url), checkParams(params), checkHeaders(headers))
-                ;
+        return HttpUtil.getService().Obput(checkUrl(this.url), checkParams(params), checkHeaders(headers));
     }
 
 }

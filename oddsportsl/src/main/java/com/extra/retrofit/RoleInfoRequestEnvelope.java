@@ -20,6 +20,6 @@ public class RoleInfoRequestEnvelope {
     public RoleInfoRequestBody body;
 
     @Element(name = "soapenv:Header", required = false)
-    public String aHeader;
+    public String aHeader="";
 
 }

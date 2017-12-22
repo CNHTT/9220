@@ -49,7 +49,7 @@ public class EventHandler extends BaseHandler {
 
     @Override
     public void endDocument() throws SAXException {
-        L.d("endDocument");
+        L.d(TAG+"endDocument");
         callBackSuccess.eventEnd();
 
     }
@@ -60,7 +60,7 @@ public class EventHandler extends BaseHandler {
 
     @Override
     public void startDocument() throws SAXException {
-        L.d("startDocument");
+        L.d(TAG+"startDocument");
     }
 
     @Override

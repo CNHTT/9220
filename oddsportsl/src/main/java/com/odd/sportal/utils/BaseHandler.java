@@ -8,6 +8,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.net.URL;
@@ -25,6 +26,12 @@ public abstract class BaseHandler extends DefaultHandler{
     //缓存！公共数据的存放类，所有数据都从这里取，一般将它写在Const类中，这里我就不建Const.java了
     public static Map hash=new HashMap();//放在Const.java中！
 
+    public String path;
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public abstract boolean parse(String xmlString);
 
     public static void parserXml(BaseHandler baseHandler, String xmlString)
@@ -34,11 +41,14 @@ public abstract class BaseHandler extends DefaultHandler{
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
-        XMLReader xmlReader = parser.getXMLReader();
-        xmlReader.setContentHandler(baseHandler);
 
-        //解析文件
-//      xmlReader.parse(new InputSource(new URL(xmlString).openStream()));//文件
+        parser.parse(new File(xmlString),baseHandler);
+//
+//        XMLReader xmlReader = parser.getXMLReader();
+//        xmlReader.setContentHandler(baseHandler);
+//
+//        //解析文件
+//      xmlReader.parse(new InputSource( new URL(xmlString).openStream()));//文件
         // 创建一个xml字符串
 //        StringReader read = new StringReader(xmlString);
         // 创建新的输入源SAX 解析器将使用 InputSource对象来确定如何读取 XML 输入
@@ -46,17 +56,17 @@ public abstract class BaseHandler extends DefaultHandler{
 //        xmlReader.parse(source);
 //        read.close();
 
-        InputStream is = Utils.getContext().getAssets().open(xmlString);
-        int size = is.available();
-        // Read the entire asset into a local byte buffer.
-        byte[] buffer = new byte[size];
-        is.read(buffer);
-        is.close();
-        // Convert the buffer into a string.
-        String text = new String(buffer, "utf-8");
-        StringReader read = new StringReader(text);
-        InputSource source = new InputSource(read);
-        xmlReader.parse(source);
+//        InputStream is = Utils.getContext().getAssets().open(xmlString);
+//        int size = is.available();
+//        // Read the entire asset into a local byte buffer.
+//        byte[] buffer = new byte[size];
+//        is.read(buffer);
+//        is.close();
+//        // Convert the buffer into a string.
+//        String text = new String(buffer, "utf-8");
+//        StringReader read = new StringReader(text);
+//        InputSource source = new InputSource(read);
+//        xmlReader.parse(source);
     }
 
     public abstract void characters(char[] ch, int start, int length)

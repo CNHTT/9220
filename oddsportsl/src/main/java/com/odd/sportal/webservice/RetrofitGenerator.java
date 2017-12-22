@@ -20,7 +20,7 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
  */
 public class RetrofitGenerator {
     public final static String BASE_URL = "http://www.webxml.com.cn/WebServices/";
-    public static WeatherInterfaceApi weatherInterfaceApi;
+    public static IBetAPI iBetAPI;
 
     private static Strategy strategy = new AnnotationStrategy();
     private static Serializer serializer = new Persister(strategy);
@@ -54,11 +54,11 @@ public class RetrofitGenerator {
         return retrofit.create(serviceClass);
     }
 
-    public static WeatherInterfaceApi getWeatherInterfaceApi() {
-        if(weatherInterfaceApi == null) {
-            weatherInterfaceApi = createService(WeatherInterfaceApi.class);
+    public static IBetAPI getIBetAPI() {
+        if(iBetAPI == null) {
+            iBetAPI = createService(IBetAPI.class);
         }
-        return weatherInterfaceApi;
+        return iBetAPI;
 
     }
 }

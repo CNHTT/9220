@@ -21,16 +21,26 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
+        BetForecastsLiveModelDao.createTable(db, ifNotExists);
         BetForecastsModelDao.createTable(db, ifNotExists);
+        BetForecastsOutRightModelDao.createTable(db, ifNotExists);
+        EventLiveModelDao.createTable(db, ifNotExists);
         EventModelDao.createTable(db, ifNotExists);
+        GameLiveModelDao.createTable(db, ifNotExists);
         GameModelDao.createTable(db, ifNotExists);
+        NextLiveEventsModelDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
+        BetForecastsLiveModelDao.dropTable(db, ifExists);
         BetForecastsModelDao.dropTable(db, ifExists);
+        BetForecastsOutRightModelDao.dropTable(db, ifExists);
+        EventLiveModelDao.dropTable(db, ifExists);
         EventModelDao.dropTable(db, ifExists);
+        GameLiveModelDao.dropTable(db, ifExists);
         GameModelDao.dropTable(db, ifExists);
+        NextLiveEventsModelDao.dropTable(db, ifExists);
     }
 
     /**
@@ -49,9 +59,14 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
+        registerDaoClass(BetForecastsLiveModelDao.class);
         registerDaoClass(BetForecastsModelDao.class);
+        registerDaoClass(BetForecastsOutRightModelDao.class);
+        registerDaoClass(EventLiveModelDao.class);
         registerDaoClass(EventModelDao.class);
+        registerDaoClass(GameLiveModelDao.class);
         registerDaoClass(GameModelDao.class);
+        registerDaoClass(NextLiveEventsModelDao.class);
     }
 
     public DaoSession newSession() {

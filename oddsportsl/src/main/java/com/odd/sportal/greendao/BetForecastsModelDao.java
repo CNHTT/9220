@@ -45,7 +45,7 @@ public class BetForecastsModelDao extends AbstractDao<BetForecastsModel, Long> {
         public final static Property DESCR_LOCAL = new Property(18, String.class, "DESCR_LOCAL", false, "DESCR__LOCAL");
         public final static Property FORDER = new Property(19, long.class, "FORDER", false, "FORDER");
         public final static Property FC_UID = new Property(20, long.class, "FC_UID", false, "FC__UID");
-        public final static Property ODDS_NORMA = new Property(21, double.class, "ODDS_NORMA", false, "ODDS__NORMA");
+        public final static Property ODDS_NORMAL = new Property(21, double.class, "ODDS_NORMAL", false, "ODDS__NORMAL");
         public final static Property FC_PARAM = new Property(22, double.class, "FC_PARAM", false, "FC__PARAM");
     }
 
@@ -83,7 +83,7 @@ public class BetForecastsModelDao extends AbstractDao<BetForecastsModel, Long> {
                 "\"DESCR__LOCAL\" TEXT," + // 18: DESCR_LOCAL
                 "\"FORDER\" INTEGER NOT NULL ," + // 19: FORDER
                 "\"FC__UID\" INTEGER NOT NULL ," + // 20: FC_UID
-                "\"ODDS__NORMA\" REAL NOT NULL ," + // 21: ODDS_NORMA
+                "\"ODDS__NORMAL\" REAL NOT NULL ," + // 21: ODDS_NORMAL
                 "\"FC__PARAM\" REAL NOT NULL );"); // 22: FC_PARAM
     }
 
@@ -145,7 +145,7 @@ public class BetForecastsModelDao extends AbstractDao<BetForecastsModel, Long> {
         }
         stmt.bindLong(20, entity.getFORDER());
         stmt.bindLong(21, entity.getFC_UID());
-        stmt.bindDouble(22, entity.getODDS_NORMA());
+        stmt.bindDouble(22, entity.getODDS_NORMAL());
         stmt.bindDouble(23, entity.getFC_PARAM());
     }
 
@@ -201,7 +201,7 @@ public class BetForecastsModelDao extends AbstractDao<BetForecastsModel, Long> {
         }
         stmt.bindLong(20, entity.getFORDER());
         stmt.bindLong(21, entity.getFC_UID());
-        stmt.bindDouble(22, entity.getODDS_NORMA());
+        stmt.bindDouble(22, entity.getODDS_NORMAL());
         stmt.bindDouble(23, entity.getFC_PARAM());
     }
 
@@ -234,7 +234,7 @@ public class BetForecastsModelDao extends AbstractDao<BetForecastsModel, Long> {
             cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // DESCR_LOCAL
             cursor.getLong(offset + 19), // FORDER
             cursor.getLong(offset + 20), // FC_UID
-            cursor.getDouble(offset + 21), // ODDS_NORMA
+            cursor.getDouble(offset + 21), // ODDS_NORMAL
             cursor.getDouble(offset + 22) // FC_PARAM
         );
         return entity;
@@ -263,7 +263,7 @@ public class BetForecastsModelDao extends AbstractDao<BetForecastsModel, Long> {
         entity.setDESCR_LOCAL(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
         entity.setFORDER(cursor.getLong(offset + 19));
         entity.setFC_UID(cursor.getLong(offset + 20));
-        entity.setODDS_NORMA(cursor.getDouble(offset + 21));
+        entity.setODDS_NORMAL(cursor.getDouble(offset + 21));
         entity.setFC_PARAM(cursor.getDouble(offset + 22));
      }
     

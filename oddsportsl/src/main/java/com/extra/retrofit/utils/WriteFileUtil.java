@@ -65,4 +65,8 @@ public class WriteFileUtil {
         public long read = 0;
         public long total = 0;
     }
+
+    public static void main(String[] args) {
+
+    }
 }

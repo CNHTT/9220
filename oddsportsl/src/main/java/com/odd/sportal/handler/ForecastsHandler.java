@@ -42,7 +42,7 @@ public class ForecastsHandler extends BaseHandler {
 
     @Override
     public void endDocument() throws SAXException {
-        L.d("endDocument");
+        L.d("ForecastsHandler endDocument");
         callBackSuccess.forecastsEnd();
     }
 
@@ -53,17 +53,15 @@ public class ForecastsHandler extends BaseHandler {
 
     @Override
     public void startDocument() throws SAXException {
-        L.d("startDocument");
+        L.d("ForecastsHandler startDocument");
     }
 
     BetForecastsModel object;
-    int i =0;
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
         try {
             if(qName.equals("ROW")){
-                L.d(i+++"");
                 object = new BetForecastsModel();
                 object.setID(DataUtils.getNumberLong("ID",attributes));
                 object.setEVENT_ID(DataUtils.getNumberLong("EVENT_ID",attributes));
@@ -90,7 +88,7 @@ public class ForecastsHandler extends BaseHandler {
                 object.setFORDER(DataUtils.getNumberLong("FORDER",attributes));
                 object.setFC_UID(DataUtils.getNumberLong("FC_UID",attributes));
 
-                object.setODDS_NORMA(DataUtils.getNumberDouble("ODDS_NORMA",attributes));
+                object.setODDS_NORMAL(DataUtils.getNumberDouble("ODDS_NORMAL",attributes));
                 object.setFC_PARAM(DataUtils.getNumberDouble("FC_PARAM",attributes));
                 DbHelper.insertNewForecasts(object);
                 object=null;
