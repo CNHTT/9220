@@ -120,11 +120,7 @@ public class VideoActivity extends BaseActivity {
             tvContent.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//适应屏幕，内容将自动缩放
 
 
-            String p ="<p><img src=\"http://c.hiphotos.baidu.com/image/pic/item/a50f4bfbfbedab643102c011fd36afc378311eea.jpg\" title=\"timg.jpeg\" alt=\"timg.jpeg\"/></p>";
-            p = p.replace("<img", "<img  width=\"100%\"");
-
             if (videoShowBean.getPost_content() != "")
-              tvContent.loadDataWithBaseURL(null,p,"text/html" , "utf-8", null);
             tvLike.setText(videoShowBean.getPost_like());
             tvTitle.setText(videoShowBean.getPost_title());
             tvHits.setText(videoShowBean.getPost_hits());

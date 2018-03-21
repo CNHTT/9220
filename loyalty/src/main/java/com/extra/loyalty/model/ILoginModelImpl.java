@@ -11,6 +11,7 @@ import com.extra.loyalty.model.entities.Result;
 import com.extra.loyalty.model.impl.ILoginModel;
 import com.extra.loyalty.utils.JsonUtil;
 import com.extra.retrofit.HttpBuilder;
+import com.extra.utils.SPUtils;
 import com.player.util.L;
 
 /**
@@ -40,6 +41,11 @@ public class ILoginModelImpl implements ILoginModel {
                             ConstantValue.ACCOUNT_ID_VALUE = result.getAccount().getAccount_id();
                             ConstantValue.USER_ID_VALUE = uid;
                             ConstantValue.USER_API_KEY_VALUE = pin;
+
+                            SPUtils.putString(context,ConstantValue.ACCOUNT_ID_VALUE,result.getAccount().getAccount_id());
+                            SPUtils.putString(context,ConstantValue.USER_ID_VALUE,uid);
+                            SPUtils.putString(context,ConstantValue.USER_API_KEY_VALUE,pin);
+                            SPUtils.putString(context,ConstantValue.ACC,JsonUtil.objectToString(result.getAccount()));
                             listener.netLoginSuccess(result.getAccount());
                         }else {
                             listener.netWorkError(result.getError());

@@ -40,7 +40,6 @@ public class BusinessEmployeesActivity extends BaseActivity implements AdapterVi
     @Override
     protected void initWindow() {
         ButterKnife.bind(this);
-
         StatusBarUtil.setTranslucent(this);
         toolbar.setTitle(R.string.lp);
     }
@@ -77,7 +76,13 @@ public class BusinessEmployeesActivity extends BaseActivity implements AdapterVi
                 startActivity(new Intent(this,CreateNewUserActivity.class));
                 break;
             case 1:
-                startActivity(new Intent(this,DeactivatedCampaignsListActivity.class));
+                startActivity(new Intent(this,UserListActivity.class));
+                break;
+            case 2:
+                startActivity(new Intent(this,UserInformationActivity.class));
+                break;
+            case 3:
+                startActivity(new Intent(this,ChangeAdminPassWordActivity.class));
                 break;
         }
     }

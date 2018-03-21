@@ -10,7 +10,6 @@ import com.player.util.L;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-import java.io.EOFException;
 import java.util.Stack;
 import java.util.Vector;
 

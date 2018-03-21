@@ -1,7 +1,9 @@
 package com.szfp.scan.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,15 +46,48 @@ public class ShopCardModel implements Serializable {
     }
 
 
-    public boolean addShoppingSingle(ShopModel shopModel){
-        int remain = shopModel.getNum();
-        if (remain<=0)return false;
-        shopModel.setNum(--remain);
-        int num =0;
-        if (shoppingSingle.containsKey(shopModel))
-            num = shoppingSingle.get(shopModel);
-        num+=1;
-        shoppingSingle.put(shopModel,num);
+    private boolean isAdd = true;
+    public boolean addShoppingSingle(ShopModel shopModel,int type){
+        if (type==1){
+            int remain = shopModel.getNum();
+            if (remain<=0)return false;
+            int num =0;
+            isAdd=true;
+            List<ShopModel> list =new ArrayList<>();
+            list.addAll( shoppingSingle.keySet());
+            for (int i = 0; i <list.size() ; i++) {
+                if (list.get(i).getItemNo().equals(shopModel.getItemNo())){
+                    num = shoppingSingle.get(list.get(i));
+                    num+=1;
+
+                    list.get(i).setNum(shopModel.getNum()-num);
+                    shoppingSingle.put(list.get(i),num);
+                    isAdd=false;
+                }
+            }
+
+            if (isAdd){
+                num+=1;
+                shopModel.setNum(shopModel
+                        .getNum()-num);
+                shoppingSingle.put(shopModel,num);
+            }
+        }else {
+            int remain = shopModel.getNum();
+            if(remain<=0)
+                return false;
+            shopModel.setNum(--remain);
+            int num = 0;
+            if(shoppingSingle.containsKey(shopModel)){
+                num = shoppingSingle.get(shopModel);
+            }
+            num+=1;
+            shoppingSingle.put(shopModel,num);
+        }
+
+//        if (shoppingSingle.containsKey(shopModel))
+//            num = shoppingSingle.get(shopModel);
+//
         shoppingTotalPrice +=shopModel.getPrice();
         shoppingAccount++;
         return true;
@@ -74,4 +109,16 @@ public class ShopCardModel implements Serializable {
         return true;
     }
 
+
+    public void setShoppingAccount(int shoppingAccount) {
+        this.shoppingAccount = shoppingAccount;
+    }
+
+    public void setShoppingTotalPrice(double shoppingTotalPrice) {
+        this.shoppingTotalPrice = shoppingTotalPrice;
+    }
+
+    public void setShoppingSingle(Map<ShopModel, Integer> shoppingSingle) {
+        this.shoppingSingle = shoppingSingle;
+    }
 }

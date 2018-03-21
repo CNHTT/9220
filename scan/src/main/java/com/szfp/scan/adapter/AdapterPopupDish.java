@@ -1,5 +1,6 @@
 package com.szfp.scan.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -47,6 +48,7 @@ public class AdapterPopupDish extends RecyclerView.Adapter{
         return viewHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         DishViewHolder dishholder = (DishViewHolder)holder;
@@ -56,29 +58,24 @@ public class AdapterPopupDish extends RecyclerView.Adapter{
             dishholder.right_dish_price_tv.setText(modelDish.getPrice() + "");
             int num = mShopCardModel.getShoppingSingle().get(modelDish);
             dishholder.right_dish_account_tv.setText(num+"");
+            dishholder.right_dish_num.setText(modelDish.getNum()+"");
 
-            dishholder.right_dish_add_iv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(mShopCardModel.addShoppingSingle(modelDish)) {
-                        notifyItemChanged(position);
-                        if(shopCartImp!=null)
-                            shopCartImp.add(view,position);
-                    }
+            dishholder.right_dish_add_iv.setOnClickListener(view -> {
+                if(mShopCardModel.addShoppingSingle(modelDish,2)) {
+                    notifyItemChanged(position);
+                    if(shopCartImp!=null)
+                        shopCartImp.add(view,position);
                 }
             });
 
-            dishholder.right_dish_remove_iv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(mShopCardModel.subShoppingSingle(modelDish)){
-                        mModelDishList.clear();
-                        mModelDishList.addAll(mShopCardModel.getShoppingSingle().keySet());
-                        itemCount = mShopCardModel.getDishAccount();
-                        notifyDataSetChanged();
-                        if(shopCartImp!=null)
-                            shopCartImp.remove(view,position);
-                    }
+            dishholder.right_dish_remove_iv.setOnClickListener(view -> {
+                if(mShopCardModel.subShoppingSingle(modelDish)){
+                    mModelDishList.clear();
+                    mModelDishList.addAll(mShopCardModel.getShoppingSingle().keySet());
+                    itemCount = mShopCardModel.getDishAccount();
+                    notifyDataSetChanged();
+                    if(shopCartImp!=null)
+                        shopCartImp.remove(view,position);
                 }
             });
         }
@@ -99,10 +96,12 @@ public class AdapterPopupDish extends RecyclerView.Adapter{
         private LinearLayout right_dish_layout;
         private ImageView right_dish_remove_iv;
         private ImageView right_dish_add_iv;
+        private TextView right_dish_num;
         private TextView right_dish_account_tv;
 
         public DishViewHolder(View itemView) {
             super(itemView);
+            right_dish_num = (TextView)itemView.findViewById(R.id.right_dish_num);
             right_dish_name_tv = (TextView)itemView.findViewById(R.id.right_dish_name);
             right_dish_price_tv = (TextView)itemView.findViewById(R.id.right_dish_price);
             right_dish_layout = (LinearLayout)itemView.findViewById(R.id.right_dish_item);

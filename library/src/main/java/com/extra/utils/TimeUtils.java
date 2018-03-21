@@ -187,11 +187,22 @@ public class TimeUtils {
      *     yyyy-MM-dd'T'HH:mm:ss.SSSZ    2016-08-12T15:44:40.461+0800
      * EEEE 'DATE('yyyy-MM-dd')' 'TIME('HH:mm:ss')' zzzz    星期五 DATE(2016-08-12) TIME(15:44:40) 中国标准时间
      * </pre>
-     */
-    public static final SimpleDateFormat DEFAULT_SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+     */  public static final SimpleDateFormat DEFAULT_SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
     public static final SimpleDateFormat DEFAULT_YMD = new SimpleDateFormat("yyyy-MM-dd");
+    public static final SimpleDateFormat DEFAULT_DMY = new SimpleDateFormat("dd/MM/yyyy");
+    public static final SimpleDateFormat DEFAULT_HMS = new SimpleDateFormat("HH:mm:ss");
+    public static final SimpleDateFormat DEFAULT_DMYHMS = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
 
+    public static String date3String(Date time) {
+        return date2String(time, DEFAULT_DMY);
+    }
+    public static String date4String(Date time) {
+        return date2String(time, DEFAULT_HMS);
+    }
+    public static String date5String(Date time) {
+        return date2String(time, DEFAULT_DMYHMS);
+    }
     public static long getCrateDayTime(){
         Date date = new Date();
         String dateStr = DEFAULT_YMD.format(date);

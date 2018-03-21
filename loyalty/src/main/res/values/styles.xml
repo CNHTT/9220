@@ -30,10 +30,10 @@
         <!-- <item name="android:windowAnimationStyle">@style/Anim_Full_dialog</item> -->
     </style>
     <style name="AnimationActivity" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/anim_slide_bottom_in</item>
-        <item name="android:activityOpenExitAnimation">@anim/anim_slide_bottom_out</item>
-        <item name="android:activityCloseEnterAnimation">@anim/anim_slide_bottom_in</item>
-        <item name="android:activityCloseExitAnimation">@anim/anim_slide_bottom_out</item>
+        <item name="android:activityOpenEnterAnimation">@anim/in_from_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/out_from_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/in_from_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/out_from_right</item>
     </style>
     <style name="CustomTheme" parent="MaterialDrawerTheme.TranslucentStatus">
         <!-- ...and here we setting appcompat’s color theme attrs -->

@@ -80,4 +80,15 @@ public class ShopModel implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "ShopModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", itemNo='" + itemNo + '\'' +
+                ", num=" + num +
+                ", price=" + price +
+                '}';
+    }
 }

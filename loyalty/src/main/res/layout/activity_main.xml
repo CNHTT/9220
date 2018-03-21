@@ -48,6 +48,43 @@
             android:textColor="@color/black"
             android:background="@drawable/main_bottom"/>
         <TextView
+            android:id="@+id/tv_customers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_font_10"
+            android:text="@string/customers"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black"
+            android:background="@drawable/main_bottom"/>
+        <TextView
+            android:id="@+id/tv_transaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_font_10"
+            android:text="@string/transaction"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black"
+            android:background="@drawable/main_bottom"/>
+        <TextView
+            android:id="@+id/tv_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_font_10"
+            android:text="@string/setting_lo"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="20dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black"
+            android:background="@drawable/main_bottom"
+            tools:ignore="RtlSymmetry" />
+        <TextView
             android:id="@+id/tv_login_out"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

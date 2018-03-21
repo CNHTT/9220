@@ -6,4 +6,5 @@ package com.szfp.scan.inter;
 
 public interface OnStartScanListener {
     void startScan();
+    void startCheckOut();
 }

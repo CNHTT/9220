@@ -44,6 +44,7 @@
                     android:background="@drawable/et_bg"
                     android:padding="@dimen/length_10"
                     android:maxLength="20"
+                    android:inputType="textEmailAddress"
                     android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -184,6 +185,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/english"  />
+
+            </LinearLayout>
+            <LinearLayout
+                android:padding="@dimen/length_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:ems="7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/timezone"/>
+
+                <com.weiwangcn.betterspinner.library.BetterSpinner
+                    android:id="@+id/ns_timezone"
+                    android:layout_marginLeft="@dimen/length_10"
+                    android:background="@drawable/et_bg"
+                    android:padding="@dimen/length_10"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/timezones"  />
 
             </LinearLayout>
             <LinearLayout

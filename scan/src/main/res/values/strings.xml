@@ -1,12 +1,11 @@
 <resources>
-    <string name="app_name">scan</string>
+    <string name="app_name">Inventory management</string>
     <string name="login">LOGIN</string>
     <string name="user_name">USER NAME</string>
     <string name="password">PASSWORD</string>
     <string name="shopcart">Shopping Cart</string>
     <string name="clear">Submit</string>
     <string name="trading">Trading</string>
-
 
 
     <string name="scan_barcode_title">ZebraScan</string>
@@ -21,6 +20,15 @@
     <string name="shop_sn">Item No.</string>
     <string name="num">Quantity</string>
     <string name="price">Price</string>
-    <string name="add_inv">Add Inv</string>
+    <string name="add_inv">Add Product</string>
+    <string name="sn">SN:</string>
+    <string name="_hint">000</string>
+    <string name="total_num">Total Number:</string>
+    <string name="total_amount">Total Amount:</string>
+    <string name="operator">Operator</string>
+    <string name="shopping_records">Shopping Records</string>
+    <string name="administrator">administrator</string>
+    <string name="user_pass">Password</string>
+    <string name="create_new_user">Create</string>
 
 </resources>

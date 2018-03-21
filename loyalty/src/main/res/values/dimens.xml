@@ -26,9 +26,9 @@
     <dimen name="shopping_cart_total_price_word_size">20sp</dimen>
     <dimen name="shopping_cart_small_size">15sp</dimen>
     <dimen name="shopping_cart_bottom_recycle_height">250dp</dimen>
-    <dimen name="text_font_8">18sp</dimen>
+    <dimen name="text_font_8">8sp</dimen>
     <dimen name="text_font_10">20sp</dimen>
-    <dimen name="text_font_12">22sp</dimen>
+    <dimen name="text_font_12">16sp</dimen>
     <dimen name="text_font_14">24sp</dimen>
     <dimen name="text_font_15">26sp</dimen>
     <dimen name="text_font_16">28sp</dimen>
@@ -47,4 +47,5 @@
     <dimen name="text_font_4">14sp</dimen>
     <dimen name="text_font_2">12sp</dimen>
     <dimen name="text_font_3">13sp</dimen>
+    <dimen name="length_5">5dp</dimen>
 </resources>

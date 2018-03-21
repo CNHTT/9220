@@ -1,5 +1,6 @@
 package com.extra.utils;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -18,10 +19,13 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -38,6 +42,20 @@ import static com.extra.utils.ConstUtils.MB;
  */
 
 public class DataUtils {
+
+    @SuppressLint("DefaultLocale")
+    public static String getLoyaltyCode() {
+        int first = new Random(10).nextInt(8) + 1;
+        System.out.println(first);
+        int hashCodeV = UUID.randomUUID().toString().hashCode();
+        if (hashCodeV < 0) {//有可能是负数
+            hashCodeV = -hashCodeV;
+        }
+        // 0 代表前面补充0
+        // 4 代表长度为4
+        // d 代表参数为正数型
+        return first + String.format("%015d", hashCodeV);
+    }
 
     private char[] getChar(int position) {
         String str = String.valueOf(position);
@@ -1240,4 +1258,100 @@ public class DataUtils {
         String l = attributes.getValue(ee);
         return l ==null?-1: Double.parseDouble(l.replace(" ",""));
     }
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 打印两列
+     *
+     * @param leftText  左侧文字
+     * @param rightText 右侧文字
+     * @return
+     */
+    @SuppressLint("NewApi")
+    public static String printTwoData(String leftText, String rightText) {
+        StringBuilder sb = new StringBuilder();
+        int leftTextLength = getBytesLength(leftText);
+        int rightTextLength = getBytesLength(rightText);
+        sb.append(leftText);
+
+        // 计算两侧文字中间的空格
+        int marginBetweenMiddleAndRight = LINE_BYTE_SIZE - leftTextLength - rightTextLength;
+
+        for (int i = 0; i < marginBetweenMiddleAndRight; i++) {
+            sb.append(" ");
+        }
+        sb.append(rightText);
+        return sb.toString();
+    }
+
+    /**
+     * 打印三列
+     *
+     * @param leftText   左侧文字
+     * @param middleText 中间文字
+     * @param rightText  右侧文字
+     * @return
+     */
+    @SuppressLint("NewApi")
+    public static String printThreeData(String leftText, String middleText, String rightText) {
+        StringBuilder sb = new StringBuilder();
+        // 左边最多显示 LEFT_TEXT_MAX_LENGTH 个汉字 + 两个点
+        if (leftText.length() > LEFT_TEXT_MAX_LENGTH) {
+            leftText = leftText.substring(0, LEFT_TEXT_MAX_LENGTH) + "..";
+        }
+        int leftTextLength = getBytesLength(leftText);
+        int middleTextLength = getBytesLength(middleText);
+        int rightTextLength = getBytesLength(rightText);
+
+        sb.append(leftText);
+        // 计算左侧文字和中间文字的空格长度
+        int marginBetweenLeftAndMiddle = LEFT_LENGTH - leftTextLength - middleTextLength / 2;
+
+        for (int i = 0; i < marginBetweenLeftAndMiddle; i++) {
+            sb.append(" ");
+        }
+        sb.append(middleText);
+
+        // 计算右侧文字和中间文字的空格长度
+        int marginBetweenMiddleAndRight = RIGHT_LENGTH - middleTextLength / 2 - rightTextLength;
+
+        for (int i = 0; i < marginBetweenMiddleAndRight; i++) {
+            sb.append(" ");
+        }
+
+        // 打印的时候发现，最右边的文字总是偏右一个字符，所以需要删除一个空格
+        sb.delete(sb.length() - 1, sb.length()).append(rightText);
+        return sb.toString();
+    }
+
+    /**
+     * 打印纸一行最大的字节
+     */
+    private static final int LINE_BYTE_SIZE = 32;
+
+    private static final int LEFT_LENGTH = 20;
+
+    private static final int RIGHT_LENGTH = 12;
+
+    /**
+     * 左侧汉字最多显示几个文字
+     */
+    private static final int LEFT_TEXT_MAX_LENGTH = 8;
+
+    /**
+     * 小票打印菜品的名称，上限调到8个字
+     */
+    public static final int MEAL_NAME_MAX_LENGTH = 8;
+    private static int getBytesLength(String msg) {
+        return msg.getBytes(Charset.forName("GB2312")).length;
+    }
+
 }

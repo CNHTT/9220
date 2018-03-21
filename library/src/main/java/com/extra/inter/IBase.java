@@ -14,14 +14,13 @@ import com.extra.presenter.BasePresenter;
 public interface IBase {
 
     BasePresenter getPresenter();
-
+    int getContentLayout();
     View createView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState);
 
     void bindView(Bundle savedInstanceState);
 
     View getView();
 
-    int getContentLayout();
 
 
 }

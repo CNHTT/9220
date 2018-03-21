@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import com.extra.loyalty.App;
 import com.extra.loyalty.ConstantValue;
 import com.extra.loyalty.R;
 import com.extra.loyalty.model.entities.AccountInfo;
@@ -28,6 +29,7 @@ import com.extra.loyalty.view.impl.ILoginView;
 import com.extra.presenter.BasePresenter;
 import com.extra.retrofit.HttpUtil;
 import com.extra.utils.AlertAnimateUtil;
+import com.extra.utils.SPUtils;
 import com.extra.utils.StatusBarUtil;
 import com.extra.utils.ToastUtils;
 import com.extra.view.activity.BaseActivity;
@@ -130,32 +132,29 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         });
 
 
-        scrollView.addOnLayoutChangeListener(new ViewGroup.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-              /* old是改变前的左上右下坐标点值，没有old的是改变后的左上右下坐标点值
-              现在认为只要控件将Activity向上推的高度超过了1/3屏幕高，就认为软键盘弹起*/
-                if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > keyHeight)) {
-                    Log.e("wenzhihao", "up------>" + (oldBottom - bottom));
-                    int dist = content.getBottom() - bottom;
-                    if (dist > 0) {
-                        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(content, "translationY", 0.0f, -dist);
-                        mAnimatorTranslateY.setDuration(300);
-                        mAnimatorTranslateY.setInterpolator(new LinearInterpolator());
-                        mAnimatorTranslateY.start();
-                        AlertAnimateUtil.zoomIn(logo, 0.6f, dist);
-                    }
+        scrollView.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+          /* old是改变前的左上右下坐标点值，没有old的是改变后的左上右下坐标点值
+          现在认为只要控件将Activity向上推的高度超过了1/3屏幕高，就认为软键盘弹起*/
+            if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > keyHeight)) {
+                Log.e("wenzhihao", "up------>" + (oldBottom - bottom));
+                int dist = content.getBottom() - bottom;
+                if (dist > 0) {
+                    ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(content, "translationY", 0.0f, -dist);
+                    mAnimatorTranslateY.setDuration(300);
+                    mAnimatorTranslateY.setInterpolator(new LinearInterpolator());
+                    mAnimatorTranslateY.start();
+                    AlertAnimateUtil.zoomIn(logo, 0.6f, dist);
+                }
 
-                } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > keyHeight)) {
-                    Log.e("wenzhihao", "down------>" + (bottom - oldBottom));
-                    if ((content.getBottom() - oldBottom) > 0) {
-                        ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(content, "translationY", content.getTranslationY(), 0);
-                        mAnimatorTranslateY.setDuration(300);
-                        mAnimatorTranslateY.setInterpolator(new LinearInterpolator());
-                        mAnimatorTranslateY.start();
-                        //键盘收回后，logo恢复原来大小，位置同样回到初始位置
-                        AlertAnimateUtil.zoomOut(logo, 0.6f);
-                    }
+            } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > keyHeight)) {
+                Log.e("wenzhihao", "down------>" + (bottom - oldBottom));
+                if ((content.getBottom() - oldBottom) > 0) {
+                    ObjectAnimator mAnimatorTranslateY = ObjectAnimator.ofFloat(content, "translationY", content.getTranslationY(), 0);
+                    mAnimatorTranslateY.setDuration(300);
+                    mAnimatorTranslateY.setInterpolator(new LinearInterpolator());
+                    mAnimatorTranslateY.start();
+                    //键盘收回后，logo恢复原来大小，位置同样回到初始位置
+                    AlertAnimateUtil.zoomOut(logo, 0.6f);
                 }
             }
         });
@@ -183,6 +182,9 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public void setLoginInfo(AccountInfo accountInfo) {
         cancleProgressDialog();
 
+        ConstantValue.ACCOUNT_ID_VALUE = accountInfo.getAccount_id();
+
+        SPUtils.putBoolean(this,ConstantValue.ISLOGIN,true);
         Intent intent = new Intent(this,MainActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(ConstantValue.ACCOUNT_INFO,accountInfo);

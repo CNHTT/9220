@@ -113,6 +113,30 @@ public class NetworkUtil {
         }
         return result;
     }
+    /**
+     *ping "http://www.baidu.com"
+     * @return
+     */
+    public  static  boolean connectionNetwork(String ip) {
+        boolean result = false;
+        HttpURLConnection httpUrl = null;
+        try {
+            httpUrl = (HttpURLConnection) new URL(ip)
+                    .openConnection();
+            httpUrl.setConnectTimeout(TIMEOUT);
+            httpUrl.connect();
+            result = true;
+        } catch (IOException e) {
+        } finally {
+            if (null != httpUrl) {
+                httpUrl.disconnect();
+            }
+            httpUrl = null;
+        }
+        return result;
+    }
+
+
 
     /**
      * check is3G

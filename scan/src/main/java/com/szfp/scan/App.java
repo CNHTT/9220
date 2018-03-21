@@ -18,6 +18,8 @@ public class App extends Application{
     public static String userName = "123";
     public static String TID = "123";
 
+    public static boolean isTurn;
+
 
     public static String companyName = "SZFP TECHNOLOGY LIMITED";
     public static String slogan = "EXPERT IN WIRELESS POS TERMINAL FIELD";

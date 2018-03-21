@@ -59,12 +59,11 @@
                     android:layout_height="wrap_content"
                     android:text="@string/shop_sn"/>
 
-                <EditText
+                <TextView
                     android:id="@+id/et_shop_sn"
                     android:layout_marginLeft="@dimen/length_10"
                     android:background="@drawable/et_bg"
                     android:padding="@dimen/length_10"
-                    android:maxLength="25"
                     android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

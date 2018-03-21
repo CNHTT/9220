@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/all_bg_color"
+    android:orientation="vertical"
+    tools:context="com.extra.loyalty.view.activity.TransSetting">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/all_bg_color"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+
+    <ScrollView
+        android:background="#eeeeee"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/length_20"
+                android:id="@+id/ll_petrol_station"
+                android:orientation="horizontal"
+                android:background="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+                <ImageView
+                    android:id="@+id/setting_listitem_iv"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/home2_setting_trans"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+                <TextView
+                    android:id="@+id/setting_listitem_tv"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:text="@string/petrol_station"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@drawable/home2_setting_next"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginRight="10dp"
+                        android:paddingTop="15dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_show_petrol_station"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:padding="@dimen/length_10"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/cadetblue"
+                    android:text="@string/please_enter_the_bonus_ratio"/>
+
+
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="30dp"
+                    android:background="#FFFFFF"
+                    android:layout_height="45dp">
+                    <TextView
+                        android:text="@string/scale"
+                        android:layout_width="wrap_content"
+                        android:textColor="#ff333333"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="16sp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/et_scale"
+                        android:background="@android:color/transparent"
+                        android:layout_marginRight="10dp"
+                        android:maxLength="3"
+                        android:inputType="number"
+                        android:gravity="right"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/red"
+                        android:paddingRight="@dimen/length_20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="%"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

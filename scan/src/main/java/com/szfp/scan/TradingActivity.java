@@ -1,9 +1,7 @@
 package com.szfp.scan;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -11,6 +9,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,27 +20,38 @@ import android.widget.Toast;
 
 import com.extra.presenter.BasePresenter;
 import com.extra.utils.Constant;
+import com.extra.utils.DataUtils;
+import com.extra.utils.JsonUtil;
+import com.extra.utils.SPUtils;
 import com.extra.utils.StatusBarUtil;
-import com.extra.utils.ToastUtils;
+import com.extra.utils.TimeUtils;
 import com.extra.view.activity.BaseActivity;
 import com.google.zxing.Result;
+import com.player.util.L;
 import com.pos.device.scanner.OnScanListener;
 import com.pos.device.scanner.Scanner;
+import com.szfp.scan.bean.ContinueTradingModel;
 import com.szfp.scan.bean.ShopCardModel;
 import com.szfp.scan.bean.ShopModel;
+import com.szfp.scan.bean.TradingOrderModel;
+import com.szfp.scan.bean.TradingShopModel;
 import com.szfp.scan.inter.OnStartScanListener;
+import com.szfp.scan.print.PrintManager;
+import com.szfp.scan.util.DbHelper;
 import com.szfp.scan.view.DialogShopCart;
 import com.szfp.scan.view.MyImageView;
 import com.szfp.scan.zxing.ScanListener;
 import com.szfp.scan.zxing.ScanManager;
 import com.szfp.scan.zxing.decode.DecodeThread;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.schedulers.Schedulers;
+import okhttp3.Cache;
 
 public class TradingActivity extends BaseActivity implements DialogShopCart.ShopCartDialogImp, ScanListener, OnStartScanListener {
 
@@ -92,6 +103,11 @@ public class TradingActivity extends BaseActivity implements DialogShopCart.Shop
     ScanManager scanManager;
     final int PHOTOREQUESTCODE = 1111;
     private int scanMode;//扫描模型（条形，二维码，全部）
+
+    private List<TradingShopModel> tradingShopModels;
+    private TradingOrderModel tradingOrderModel;
+
+
     @Override
     protected Toolbar getToolBar() {
         return toolbar;
@@ -100,6 +116,9 @@ public class TradingActivity extends BaseActivity implements DialogShopCart.Shop
     @Override
     protected void initWindow() {
 
+        ButterKnife.bind(this);
+        StatusBarUtil.setTranslucent(this);
+        toolbar.setTitle(R.string.scan_allcode_title);
     }
 
 
@@ -125,75 +144,89 @@ public class TradingActivity extends BaseActivity implements DialogShopCart.Shop
             window.setAttributes(params);
         }
     }
+
     private boolean isContinueScan = false;
     private boolean isBackCamera = true;
     private boolean isBeep = true;
     private boolean isTorchOn = false;
+
+    @SuppressLint("SetTextI18n")
     @Override
     public void bindView(Bundle savedInstanceState) {
-        ButterKnife.bind(this);
-        StatusBarUtil.setTranslucent(this);
-        toolbar.setTitle(R.string.trading);
+
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         initData();
+
+        //启动动画
+        TranslateAnimation animation = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0.0f, Animation.RELATIVE_TO_PARENT, 0.0f, Animation.RELATIVE_TO_PARENT, 0.0f, Animation.RELATIVE_TO_PARENT,
+                0.9f);
+        animation.setDuration(4500);
+        animation.setRepeatCount(-1);
+        animation.setRepeatMode(Animation.RESTART);
+        captureScanLine.startAnimation(animation);
         Bundle realBundle = new Bundle();
         realBundle.putBoolean(Scanner.SCANNER_CONTINUE_SCAN, isContinueScan);
         realBundle.putBoolean(Scanner.SCANNER_IS_BACK_CAMERA, isBackCamera);
-        realBundle.putBoolean(Scanner.SCANNER_PLAY_BEEP,isBeep);
-        realBundle.putBoolean(Scanner.SCANNER_IS_TORCH_ON,isTorchOn);
+        realBundle.putBoolean(Scanner.SCANNER_PLAY_BEEP, isBeep);
+        realBundle.putBoolean(Scanner.SCANNER_IS_TORCH_ON, isTorchOn);
 //        Observable.create((ObservableOnSubscribe<Integer>) e -> {
 //            e.onNext(1);
 //            e.onComplete();
 //        }).subscribeOn(Schedulers.newThread()).subscribe(integer -> {
-           view=  Scanner.getInstance().initScanner(this,realBundle);
+        view = Scanner.getInstance().initScanner(this, realBundle);
 
-            if(previewLayout != null && view != null) {
-                previewLayout.removeAllViews();
-                previewLayout.addView(view);
-            }
-
-
-        isScan=true;
-            Scanner.getInstance().startScan(2000, new OnScanListener() {
-                @Override
-                public void onScanResult(int result, byte[] data) {
-                    isScan=false;
-                    try {
-                        if (result == 0) {
-                            System.out.println("扫码成功，获得结果data：" + new String(data));
-                            scanImage.setVisibility(View.VISIBLE);
-                            tvScanResult.setVisibility(View.VISIBLE);
-                            tvScanResult.setText("result："+ new String(data));
+        if (previewLayout != null && view != null) {
+            previewLayout.removeAllViews();
+            previewLayout.addView(view);
+            captureScanLine.setVisibility(View.VISIBLE);
+        }
 
 
+        isScan = true;
+        Scanner.getInstance().startScan(2000, (result, data) -> {
+            isScan = false;
 
-                            mShopCardModel.addShoppingSingle(new ShopModel( new String(data), "12312313", 10, 11.01));
-                            showCart(shoppingCartLayout);
-                            showTotalPrice();
-                        } else if (result == -1) {
-                            System.out.println("用户退出扫码");
-                        } else if (result == -3) {
-                            System.out.println("扫码超时");
-                        } else {
-                            System.out.println("其他错误");
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+            captureScanLine.setVisibility(View.GONE);
+            try {
+                if (result == 0) {
+                    System.out.println("扫码成功，获得结果data：" + new String(data));
+                    scanImage.setVisibility(View.VISIBLE);
+                    tvScanResult.setVisibility(View.VISIBLE);
+                    tvScanResult.setText("result：" + new String(data));
+
+                    ShopModel shopModel = DbHelper.getShopModel(new String(data));
+                    if (shopModel==null)return;
+
+                    mShopCardModel.addShoppingSingle(shopModel,1);
+                    showCart(shoppingCartLayout);
+                    showTotalPrice();
+                } else if (result == -1) {
+                    System.out.println("用户退出扫码");
+                } else if (result == -3) {
+                    System.out.println("扫码超时");
+                } else {
+                    System.out.println("其他错误");
                 }
-            });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 //        });
 
 
     }
 
     private Scanner scanner;
-    private void initData() {
 
-        scanMode=getIntent().getIntExtra(Constant.REQUEST_SCAN_MODE,Constant.REQUEST_SCAN_MODE_ALL_MODE);
+    private void initData() {
+        L.d(SPUtils.getString(this,"mShopCardModel"));
+
+        scanMode = getIntent().getIntExtra(Constant.REQUEST_SCAN_MODE, Constant.REQUEST_SCAN_MODE_ALL_MODE);
         mShopCardModel = new ShopCardModel();
-        mShopCardModel.addShoppingSingle(new ShopModel("A", "12312313", 10, 11.01));
         showTotalPrice();
-        switch (scanMode){
+        switch (scanMode) {
             case DecodeThread.BARCODE_MODE:
                 toolbar.setTitle(R.string.scan_barcode_title);
                 scanHint.setText(R.string.scan_barcode_hint);
@@ -209,7 +242,6 @@ public class TradingActivity extends BaseActivity implements DialogShopCart.Shop
         }
 
 
-
 //        scanManager = new ScanManager(this, capturePreview, tradingLayout, captureCropView,captureScanLine, scanMode,this);
     }
 
@@ -217,7 +249,7 @@ public class TradingActivity extends BaseActivity implements DialogShopCart.Shop
     private void showTotalPrice() {
         if (mShopCardModel != null && mShopCardModel.getShoppingTotalPrice() > 0) {
             shoppingCartTotalTv.setVisibility(View.VISIBLE);
-            shoppingCartTotalTv.setText("¥ " + mShopCardModel.getShoppingTotalPrice());
+            shoppingCartTotalTv.setText("$ " +DataUtils.format2Decimals(String.valueOf(mShopCardModel.getShoppingTotalPrice())));
             shoppingCartTotalNum.setVisibility(View.VISIBLE);
             shoppingCartTotalNum.setText("" + mShopCardModel.getShoppingAccount());
 
@@ -238,12 +270,6 @@ public class TradingActivity extends BaseActivity implements DialogShopCart.Shop
     }
 
 
-
-    @OnClick(R.id.shopping_cart_layout)
-    public void onViewClicked() {
-        showCart(shoppingCartLayout);
-    }
-
     @SuppressLint("SetTextI18n")
     @Override
     public void scanResult(Result rawResult, Bundle bundle) {
@@ -261,15 +287,12 @@ public class TradingActivity extends BaseActivity implements DialogShopCart.Shop
         }
         scanImage.setVisibility(View.VISIBLE);
         tvScanResult.setVisibility(View.VISIBLE);
-        tvScanResult.setText("result："+rawResult.getText());
-
-
-
-        mShopCardModel.addShoppingSingle(new ShopModel(rawResult.getText(), "12312313", 10, 11.01));
+        tvScanResult.setText("result：" + rawResult.getText());
         showCart(shoppingCartLayout);
         showTotalPrice();
 
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -283,63 +306,155 @@ public class TradingActivity extends BaseActivity implements DialogShopCart.Shop
         super.onPause();
 //        scanManager.onPause();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (mShopCardModel != null && mShopCardModel.getShoppingTotalPrice() > 0) {
+
+            SPUtils.putInt(this,"num",mShopCardModel.getShoppingAccount());
+            SPUtils.putString(this,"total",String.valueOf(mShopCardModel.getShoppingTotalPrice()));
+           List<ContinueTradingModel>  tradingModels  = new ArrayList<>();
+            List<ShopModel> models = new ArrayList<>(mShopCardModel.getShoppingSingle().keySet());
+            for (ShopModel s:models) {
+                ContinueTradingModel model = new ContinueTradingModel();
+                model.setNum(mShopCardModel.getShoppingSingle().get(s));
+                model.setShopModel(s);
+                tradingModels.add(model);
+            }
+
+
+            SPUtils.putString(this,"mShopCardModel", JsonUtil.objectToString(tradingModels));
+        }
+    }
+
     @Override
     public void scanError(Exception e) {
         Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         //相机扫描出错时
-        if(e.getMessage()!=null&&e.getMessage().startsWith("相机")){
-            capturePreview .setVisibility(View.INVISIBLE);
+        if (e.getMessage() != null && e.getMessage().startsWith("相机")) {
+            capturePreview.setVisibility(View.INVISIBLE);
         }
     }
 
-    private boolean isScan =false;
+    private boolean isScan = false;
+
+    @SuppressLint("SetTextI18n")
     @Override
-    public void startScan() { showTotalPrice();
+    public void startScan() {
+        showTotalPrice();
 //        scanManager.reScan();
 
-        if (isScan)return;
+        if (isScan) return;
 
 
-
-        isScan=true;
+        isScan = true;
         Bundle realBundle = new Bundle();
         realBundle.putBoolean(Scanner.SCANNER_CONTINUE_SCAN, isContinueScan);
         realBundle.putBoolean(Scanner.SCANNER_IS_BACK_CAMERA, isBackCamera);
-        realBundle.putBoolean(Scanner.SCANNER_PLAY_BEEP,isBeep);
-        realBundle.putBoolean(Scanner.SCANNER_IS_TORCH_ON,isTorchOn);
-        view=  Scanner.getInstance().initScanner(this,realBundle);
+        realBundle.putBoolean(Scanner.SCANNER_PLAY_BEEP, isBeep);
+        realBundle.putBoolean(Scanner.SCANNER_IS_TORCH_ON, isTorchOn);
+        view = Scanner.getInstance().initScanner(this, realBundle);
 
-        if(previewLayout != null && view != null) {
+        if (previewLayout != null && view != null) {
             previewLayout.removeAllViews();
             previewLayout.addView(view);
+            captureScanLine.setVisibility(View.VISIBLE);
         }
-        Scanner.getInstance().startScan(2000, new OnScanListener() {
-            @Override
-            public void onScanResult(int result, byte[] data) {
-                isScan =false;
-                try {
-                    if (result == 0) {
-                        System.out.println("扫码成功，获得结果data：" + new String(data));
-                        scanImage.setVisibility(View.VISIBLE);
-                        tvScanResult.setVisibility(View.VISIBLE);
-                        tvScanResult.setText("result："+ new String(data));
+        Scanner.getInstance().startScan(2000, (result, data) -> {
+            captureScanLine.setVisibility(View.GONE);
+            isScan = false;
+            try {
+                if (result == 0) {
+                    System.out.println("扫码成功，获得结果data：" + new String(data));
+                    scanImage.setVisibility(View.VISIBLE);
+                    tvScanResult.setVisibility(View.VISIBLE);
+                    tvScanResult.setText("result：" + new String(data));
+                    ShopModel shopModel = DbHelper.getShopModel(new String(data));
+                    if (shopModel==null)return;
 
-
-
-                        mShopCardModel.addShoppingSingle(new ShopModel( new String(data), "12312313", 10, 11.01));
-                        showCart(shoppingCartLayout);
-                        showTotalPrice();
-                    } else if (result == -1) {
-                        System.out.println("用户退出扫码");
-                    } else if (result == -3) {
-                        System.out.println("扫码超时");
-                    } else {
-                        System.out.println("其他错误");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    mShopCardModel.addShoppingSingle(shopModel,1);
+                    showCart(shoppingCartLayout);
+                    showTotalPrice();
+                } else if (result == -1) {
+                    System.out.println("用户退出扫码");
+                } else if (result == -3) {
+                    System.out.println("扫码超时");
+                } else {
+                    System.out.println("其他错误");
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
+
+    @Override
+    public void startCheckOut() {
+        if (mShopCardModel.getShoppingAccount() < 1)
+            return;
+
+        tradingOrderModel =new TradingOrderModel();
+
+        tradingOrderModel.setSn(TimeUtils.generateSequenceNo());
+        tradingOrderModel.setOpterator(App.userName);
+        tradingOrderModel.setTotalNum(mShopCardModel.getShoppingAccount());
+        tradingOrderModel.setTotalAmoumt(mShopCardModel.getShoppingTotalPrice());
+        tradingOrderModel.setCreateTime(new Date());
+
+        tradingShopModels  = new ArrayList<>();
+        List<ShopModel> models = new ArrayList<>(mShopCardModel.getShoppingSingle().keySet());
+        for (ShopModel s:models) {
+            TradingShopModel shopModel = new TradingShopModel();
+            shopModel.setSn(tradingOrderModel.getSn());
+            shopModel.setSellNum(mShopCardModel.getShoppingSingle().get(s));
+            shopModel.setItemNo(s.getItemNo());
+            shopModel.setId(s.getId());
+            shopModel.setName(s.getName());
+            shopModel.setNum(s.getNum());
+            shopModel.setPrice(s.getPrice());
+            tradingShopModels.add(shopModel);
+        }
+
+
+
+
+
+        DbHelper.insertTrading(tradingOrderModel,tradingShopModels);
+        PrintManager.getmInstance(this).printTradingSalas(tradingOrderModel,tradingShopModels);
+        DbHelper.updateShopModel(new ArrayList<>(mShopCardModel.getShoppingSingle().keySet()));
+        mShopCardModel.clear();
+        showTotalPrice();
+        SPUtils.putString(this,"mShopCardModel", "");
+    }
+
+
+    @OnClick({R.id.iv_light, R.id.qrcode_ic_back, R.id.shopping_cart_bottom, R.id.shopping_cart, R.id.shopping_cart_layout, R.id.btn_new, R.id.trading_layout})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_light:
+                startScan();
+                break;
+            case R.id.qrcode_ic_back:
+                Scanner.getInstance().stopScan();
+                break;
+            case R.id.shopping_cart_bottom:
+                showCart(shoppingCartLayout);
+                break;
+            case R.id.shopping_cart:showCart(shoppingCartLayout);
+                break;
+            case R.id.shopping_cart_layout:showCart(shoppingCartLayout);
+                break;
+            case R.id.btn_new:
+                startCheckOut();
+                break;
+            case R.id.trading_layout:
+                break;
+        }
+    }
+
+
+
+
 }

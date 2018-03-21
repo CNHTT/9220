@@ -69,7 +69,7 @@ public class AllowedCampaignAdapter extends BaseListAdapter<CampaignsBean> {
     }
 
     public void clear(){
-        list = new ArrayList<>();
+        map.clear();
         notifyDataSetChanged();
     }
 
@@ -80,9 +80,18 @@ public class AllowedCampaignAdapter extends BaseListAdapter<CampaignsBean> {
     static class ViewHolder {
         @BindView(R.id.ck_campaign)
         CheckBox ckCampaign;
-
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
+    }
+
+    public List<CampaignsBean> getCampaignsBenaList(){
+        List<Integer> list = new ArrayList<>(map.keySet());
+        List<CampaignsBean> beans = new ArrayList<>();
+
+        for (int i = 0; i <list.size() ; i++) {
+            beans.add(mDatas.get(i));
+        }
+        return beans;
     }
 }

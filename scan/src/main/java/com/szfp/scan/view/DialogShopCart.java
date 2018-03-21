@@ -83,7 +83,7 @@ public class DialogShopCart extends Dialog implements View.OnClickListener, Shop
     private void showTotalPrice() {
         if(shopCardModel !=null && shopCardModel.getShoppingTotalPrice()>0){
             totalPriceTextView.setVisibility(View.VISIBLE);
-            totalPriceTextView.setText("¥ "+ shopCardModel.getShoppingTotalPrice());
+            totalPriceTextView.setText("$ "+ shopCardModel.getShoppingTotalPrice());
             totalPriceNumTextView.setVisibility(View.VISIBLE);
             totalPriceNumTextView.setText(""+ shopCardModel.getShoppingAccount());
 
@@ -115,7 +115,7 @@ public class DialogShopCart extends Dialog implements View.OnClickListener, Shop
     public void dismiss() {animationHide(500);
     }
 
-    @OnClick({R.id.clear_layout, R.id.shopping_cart_total_tv, R.id.shopping_cart_bottom, R.id.shopping_cart_layout, R.id.shopping_cart_total_num})
+    @OnClick({R.id.clear_layout, R.id.shopping_cart_total_tv, R.id.btn_new, R.id.shopping_cart_layout, R.id.shopping_cart_total_num})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.clear_layout:
@@ -124,7 +124,9 @@ public class DialogShopCart extends Dialog implements View.OnClickListener, Shop
                 break;
             case R.id.shopping_cart_total_tv:
                 break;
-            case R.id.shopping_cart_bottom:
+            case R.id.btn_new:
+                dismiss();
+                startScan.startCheckOut();
                 break;
             case R.id.shopping_cart_layout:
                 this.dismiss();

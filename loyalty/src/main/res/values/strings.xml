@@ -5,11 +5,16 @@
     <string name="please_pass">******</string>
     <string name="loyalty_programs">1.Loyalty Programs</string>
     <string name="business_employees">2.Users (Business Employees)</string>
-    <string name="log_out">3.Log Out</string>
+    <string name="customers">3.Customers</string>
+    <string name="transaction">4.Transaction</string>
+    <string name="log_out">6.Log Out</string>
 
     <string name="lp">Loyalty Programs</string>
+    <string name="ui">User Information</string>
+    <string name="ruc">Record / Update Customer</string>
 
     <string name="campaigns_list">Campaigns List</string>
+    <string name="users_list">Users List</string>
     <string name="deactivated_campaigns_list">Deactivated Campaigns List</string>
     <string name="no_data">no data</string>
     <string name="id">ID</string>
@@ -33,8 +38,119 @@
     <string name="user_role">User Role</string>
     <string name="allowed_campaigns">Campaign</string>
     <string name="create_new_user">Create New User</string>
+    <string name="customer_search">Customer - Search</string>
     <string name="english">English</string>
     <string name="admin">Administrator</string>
+    <string name="timezone">Timezones</string>
+    <string name="timezones">+08:00\tBeijing</string>
+    <string name="update_user_info">Update User Information</string>
+    <string name="user_id">User Id</string>
+    <string name="cs">Customers</string>
+    <string name="customer_action">Customer Action</string>
+    <string name="n_str">new</string>
+    <string name="card_number_str">Card Number</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="street1">Street1</string>
+    <string name="street2">Street2</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="country">Country</string>
+    <string name="date">Date</string>
+    <string name="code">Code</string>
+    <string name="auto_add">Auto Add</string>
+    <string name="custom_field">Custom Field</string>
+    <string name="customer_username">UserName</string>
+    <string name="customer_password">Password</string>
+    <string name="customer_PIN">PIN</string>
+    <string name="not_included">not included</string>
+    <string name="exact_match">exact_match</string>
+    <string name="include_balances">include balances</string>
+    <string name="n">N</string>
+    <string name="search_hint">Click to expand / close the input box</string>
+    <string name="todo">TODO</string>
+    <string name="hide_custom_field">hide custom field</string>
+    <string name="find_">Find</string>
+    <string name="rc">Retrieve Customer</string>
+    <string name="cf">Customer - Find</string>
+    <string name="balance">BALANCE</string>
+    <string name="cumulative">CUMULATIVE</string>
+    <string name="balance_coalition">BALANCE COALITION</string>
+    <string name="cumulative_coalition">CUMULATIVE COALITION</string>
+    <string name="ch">CustomerHistory</string>
+    <string name="transactions">Transactions</string>
+    <string name="rct">Record Transaction</string>
+    <string name="amount">Amount</string>
+    <string name="rdt">Redemption Transaction</string>
+    <string name="undo_the_transaction">Undo the transaction</string>
+    <string name="transaction_id">Transaction Id</string>
+    <string name="please_input_transaction_id">please input transaction id</string>
+    <string name="delete_a_transaction">Delete a Transaction</string>
+    <string name="change_admin_password">CHANGE ADMIN PASSWORD</string>
+    <string name="change_pass">Change Password</string>
+    <string name="setting_lo">5.Setting</string>
+    <string name="communication_paras">Communication paras</string>
+    <string name="public_network_ip">NetWork IP</string>
+    <string name="petrol_station">Petrol Station</string>
+    <string name="please_enter_the_bonus_ratio">Please enter the bonus ratio</string>
+    <string name="scale">scale</string>
+    <string name="header">HEADER</string>
+    <string name="title">TITLE</string>
+    <string name="footer">FOOTER</string>
+    <string name="save">Save</string>
+    <string name="is_it_rewarding_activity">Is it rewarding activity?</string>
+    <string name="enter_purchases_total">Enter Purchases Total</string>
+    <string name="send_email">Send Email?</string>
+    <string name="prime_smart_reward">PRIME SMART REWARD</string>
+
+    <string-array name="customers">
+        <item>Record / Update Customer</item>
+        <item>Customer - Search</item>
+        <item>Customer - Find</item>
+        <item>Customer - Information</item>
+        <item>Customer - History</item>
+    </string-array>
+    <string-array name="setting_items2">
+        <item>Communication paras</item>
+        <item>Transaction paras</item>
+        <item>Print paras</item>
+    </string-array>
+    <string-array name="exact_matchs">
+        <item>not included</item>
+        <item>sensitive</item>
+        <item>insensitive</item>
+    </string-array>
+    <string-array name="transactions">
+        <item>Transaction - Record</item>
+        <item>Transaction - Redeem</item>
+        <item>Transaction - Batch</item>
+        <item>Transaction - Delete</item>
+    </string-array>
+
+    <string-array name="redeems">
+        <item>Points Redeem</item>
+        <item>Dollars Redeem</item>
+        <item>Reward To Redeem</item>
+    </string-array>
+    <string-array name="redeems_type">
+        <item>custom_points_redeem</item>
+        <item>custom_dollars_redeem</item>
+        <item>reward_to_redeem</item>
+    </string-array>
+
+    <string-array name="includes">
+        <item>Y</item>
+        <item>N</item>
+    </string-array>
+
+
+    <string-array name="customer_action">
+        <item>new</item>
+        <item>edit</item>
+        <item>register</item>
+
+    </string-array>
 
 
     <string-array name="lps">
@@ -67,6 +183,8 @@
     <string-array name="bes">
         <item>User - New</item>
         <item>Users - List</item>
+        <item>User Information</item>
+        <item>Change Password</item>
     </string-array>
 
 
@@ -130,5 +248,161 @@
         <item>all</item>
         <item>campaigns</item>
         <item>none</item>
+    </string-array>
+
+
+    <string-array name="timezones_str">
+        <item>-12:00	International Date Line West</item>
+        <item>-11:00	Midway Island Samoa</item>
+        <item>-10:00	Hawaii</item>
+        <item>-09:00	Alaska</item>
+        <item>-08:00	Pacific Time (US &amp; Canada); Tijuana</item>
+        <item>-07:00	Arizona</item>
+        <item>-07:00	Chihuahua, La Paz, Mazatlan</item>
+        <item>-07:00	Mountain Time (US &amp; Canada)</item>
+        <item>-06:00	Central America</item>
+        <item>-06:00	Central Time (US &amp; Canada)</item>
+        <item>-06:00	Guadalajara, Mexico City, Monterrey</item>
+        <item>-06:00	Saskatchewan</item>
+        <item>-05:00	Bogota, Lime, Quito</item>
+        <item>-05:00	Eastern Time (US &amp; Canada)</item>
+        <item>-05:00	Indiana (East)</item>
+        <item>-04:00	Atlantic Time (Canada)</item>
+        <item>-04:00	Caracas, La Paz</item>
+        <item>-04:00	Santiago</item>
+        <item>-03:30	Newfoundland</item>
+        <item>-03:00	Brasilia</item>
+        <item>-03:00	Buenos Aires, Georgetown</item>
+        <item>-03:00	Greenland</item>
+        <item>-03:00	Greenland</item>
+        <item>-01:00	Azores</item>
+        <item>-01:00	Cape Verde Is.</item>
+        <item> GMT	Dublin, Edinburgh, Lisbon, London</item>
+        <item> GMT	Casablanca, Monrovia</item>
+        <item>+01:00	Amsterdam, Berlin, Bern, Brussels</item>
+        <item>+01:00	Belgrade, Bratislava, Budapest</item>
+        <item>+01:00	Copenhagen, Ljubljana, Madrid</item>
+        <item>+01:00	Paris, Prague, Rome, Stockholm</item>
+        <item>+01:00	Sarajevo, Skopje, Vienna, Warsaw</item>
+        <item>+01:00	West Central Africa, Zagreb</item>
+        <item>+02:00	Athens, Bucharest, Cairo,</item>
+        <item>+02:00	Harare, Helsinki, Istanbul</item>
+        <item>+02:00	Jerusalem, Kyiv, Minsk, Pretoria</item>
+        <item>+02:00	Riga, Sofia, Tallinn, Vilnius</item>
+        <item>+02:00	(empty)</item>
+        <item>+03:00	Baghdad</item>
+        <item>+03:00	Kuwait, Riyadh</item>
+        <item>+03:00	Moscow, St. Petersburg, Volgograd</item>
+        <item>+03:00	Nairobi</item>
+        <item>+03:30	Tehran</item>
+        <item>+04:00	Abu Dhabi, Muscat</item>
+        <item>+04:00	Baku, Tbilisi, Yerevan</item>
+        <item>+04:30	Kabul</item>
+        <item>+05:00	Ekaterinburg</item>
+        <item>+05:00	Islamabad, Karachi, Tashkent</item>
+        <item>+05:30	Chennai, Kolkata, Mumbai, New Delhi</item>
+        <item>+05:45	Kathmandu</item>
+        <item>+06:00	Almaty, Novosibirsk</item>
+        <item>+06:00	Astana, Dhaka</item>
+        <item>+06:00	Sri Jayawardenepura</item>
+        <item>+06:30	Rangoon</item>
+        <item>+07:00	Bangkok, Hanoi, Jakarta</item>
+        <item>+07:00	Krasnoyarsk</item>
+        <item>+08:00	Beijing, Chongging, Hong Kong, Urumgi</item>
+        <item>+08:00	Irkutsk, Ulaan Bataar</item>
+        <item>+08:00	Kuala Lumpur, Singapore</item>
+        <item>+08:00	Perth</item>
+        <item>+08:00	Taipei</item>
+        <item>+09:00	Osaka, Sapporo, Tokyo</item>
+        <item>+09:00	Osaka, Sapporo, Tokyo</item>
+        <item>+09:00	Yakutsk</item>
+        <item>+09:30	Adelaide</item>
+        <item>+09:30	Darwin</item>
+        <item>+10:00	Brisbane</item>
+        <item>+10:00	Canberra, Melbourne, Sydney</item>
+        <item>+10:00	Guam, Port Moresby</item>
+        <item>+10:00	Hobart</item>
+        <item>+10:00	Vladivostok</item>
+        <item>+11:00	Magadan, Solomon Is., New Caledonia</item>
+        <item>+12:00	Auckland, Wellington</item>
+        <item>+12:00	Fiji, Kamchatka, Marshall Is.</item>
+        <item>+13:00	Nuku alofa</item>
+    </string-array>
+
+    <string-array name="timezones">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+        <item>52</item>
+        <item>53</item>
+        <item>54</item>
+        <item>55</item>
+        <item>56</item>
+        <item>57</item>
+        <item>58</item>
+        <item>59</item>
+        <item>60</item>
+        <item>61</item>
+        <item>62</item>
+        <item>63</item>
+        <item>64</item>
+        <item>65</item>
+        <item>67</item>
+        <item>68</item>
+        <item>69</item>
+        <item>70</item>
+        <item>71</item>
+        <item>72</item>
+        <item>73</item>
+        <item>74</item>
+        <item>75</item>
     </string-array>
 </resources>

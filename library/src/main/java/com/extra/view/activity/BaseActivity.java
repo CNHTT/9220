@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.os.Process;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,10 +19,12 @@ import android.view.WindowManager;
 
 import com.extra.R;
 import com.extra.inter.IBase;
+import com.extra.inter.OnBaseSureListener;
 import com.extra.presenter.BasePresenter;
 import com.extra.utils.AndroidBug5497Workaround;
 import com.extra.utils.AppManager;
 import com.extra.utils.ContextUtil;
+import com.extra.utils.SoundUtils;
 import com.extra.utils.SystemBarTintManager;
 import com.extra.view.impl.IBaseView;
 import com.extra.widget.dialog.DialogSure;
@@ -42,9 +45,19 @@ public abstract   class BaseActivity<T extends BasePresenter<IBaseView>> extends
     protected View mRootView;
     private SystemBarTintManager tintManager;
     private void setActionBar(){};
-    
+    protected SoundUtils soundUtils;
+    protected boolean vibrate;
+    protected static final long VIBRATE_DURATION = 200L;
 
+    private OnBaseSureListener onBaseSureListener;
 
+    public OnBaseSureListener getOnBaseSureListener() {
+        return onBaseSureListener;
+    }
+
+    public void setOnBaseSureListener(OnBaseSureListener onBaseSureListener) {
+        this.onBaseSureListener = onBaseSureListener;
+    }
 
     /**
      * 是否设置沉浸式
@@ -60,6 +73,7 @@ public abstract   class BaseActivity<T extends BasePresenter<IBaseView>> extends
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        L.d("onCreate");
         mUIThreadId = android.os.Process.myTid();
         AppManager.getAppManager().addActivity(this);
         mPresenter = getPresenter();
@@ -75,6 +89,7 @@ public abstract   class BaseActivity<T extends BasePresenter<IBaseView>> extends
             setSupportActionBar(mToolbar);
         }
         setActionBar();
+
         bindView(savedInstanceState);
 
     }
@@ -101,6 +116,8 @@ public abstract   class BaseActivity<T extends BasePresenter<IBaseView>> extends
             mPresenter = null;
         }
         super.onDestroy();
+        L.d("onDestroy");
+
     }
 
 
@@ -137,21 +154,17 @@ public abstract   class BaseActivity<T extends BasePresenter<IBaseView>> extends
         if (dialogSure==null)dialogSure = new DialogSure(this);
         dialogSure.setTitle("PROMPT");
         dialogSure.getTvContent().setText(toast);
-        dialogSure.getTvSure().setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                dialogSure.cancel();
-            }
-        });
+        dialogSure.getTvSure().setOnClickListener(v -> dialogSure.cancel());
         dialogSure.show();
     }
     protected void showDialogSuccessToast(String toast) {
         if (dialogSure==null)dialogSure = new DialogSure(this);
         dialogSure.setTitle("SUCCESS");
         dialogSure.getTvContent().setText(toast);
-        dialogSure.getTvSure().setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                dialogSure.cancel();
-            }
+        dialogSure.getTvSure().setOnClickListener(v -> {
+
+            dialogSure.cancel();
+            if (onBaseSureListener!=null)onBaseSureListener.success();
         });
         dialogSure.show();
     }
@@ -173,4 +186,64 @@ public abstract   class BaseActivity<T extends BasePresenter<IBaseView>> extends
     }
 
 
+
+
+    //播放声音
+    private void initBeepSound() {
+        if (soundUtils == null) {
+            soundUtils = new SoundUtils(this, SoundUtils.RING_SOUND);
+            soundUtils.putSound(0, R.raw.beep);
+        }
+    }
+
+    protected void playBeepSoundAndVibrate() {
+        if (soundUtils != null) {
+            soundUtils.playSound(0, SoundUtils.SINGLE_PLAY);
+        }
+        if (vibrate) {
+            Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+            vibrator.vibrate(VIBRATE_DURATION);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        L.d("onPause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        L.d("onResume");
+        initBeepSound();
+        vibrate = false;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        L.d("onStop");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        L.d("onStart");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        L.d("onRestart");
+    }
 }

@@ -37,14 +37,11 @@ public class TypeRestrictAdapter extends BaseListAdapter<String> {
         }
         viewHolder.tvContent.setText(getItem(position));
 
-        viewHolder.tvContent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    if (!result.contains(getItem(position))) result.add(getItem(position));
-                }else
-                    if (result.contains(getItem(position))) result.remove(getItem(position));
-            }
+        viewHolder.tvContent.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                if (!result.contains(getItem(position))) result.add(getItem(position));
+            }else
+                if (result.contains(getItem(position))) result.remove(getItem(position));
         });
 
 

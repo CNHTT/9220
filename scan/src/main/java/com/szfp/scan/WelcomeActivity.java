@@ -7,6 +7,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.extra.utils.SPUtils;
+
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -55,8 +57,18 @@ public class WelcomeActivity extends AppCompatActivity {
                 });
     }
     private void toLogin() {
-        finish();
-        startActivity(new Intent(this,LoginActivity.class));
+        if (SPUtils.getBoolean(this,"L")){
+            App.userName = SPUtils.getString(this,"N");
+            App.isTurn = SPUtils.getBoolean(this,"O");
+
+
+            finish();
+            startActivity(new Intent(this,MainActivity.class));
+        }else {
+
+            finish();
+            startActivity(new Intent(this,LoginActivity.class));
+        }
     }
 
     /**

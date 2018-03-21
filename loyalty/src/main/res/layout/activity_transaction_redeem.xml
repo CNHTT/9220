@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/all_bg_color"
+    android:id="@+id/ll_view"
+    android:orientation="vertical"
+    tools:context="com.extra.loyalty.view.activity.TransactionRedeemActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/all_bg_color"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+
+    <ScrollView
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:padding="@dimen/length_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:ems="7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/card_number_str"/>
+
+                    <TextView
+                        android:id="@+id/tv_card_number"
+                        android:layout_marginLeft="@dimen/length_10"
+                        android:background="@drawable/et_bg"
+                        android:padding="@dimen/length_10"
+                        android:maxLength="20"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:padding="@dimen/length_10"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:ems="7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/allowed_campaigns"/>
+
+                    <com.extra.view.PickerView
+                        android:id="@+id/pv_allowed_campaigns"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_view_other"
+                    android:padding="@dimen/length_10"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:ems="7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reward To Redeem"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/tv_amount"
+                        android:layout_marginLeft="@dimen/length_10"
+                        android:background="@drawable/et_bg"
+                        android:padding="@dimen/length_10"
+                        android:maxLength="20"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:inputType="numberDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_view_point"
+                    android:padding="@dimen/length_10"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:ems="7"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pv_point_based"
+                        android:text="Points Redeem"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/tv_redeem"
+                        android:layout_marginStart="@dimen/length_10"
+                        android:background="@drawable/et_bg"
+                        android:padding="@dimen/length_10"
+                        android:maxLength="20"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:inputType="numberDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:padding="@dimen/length_10"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:ems="7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/description"/>
+
+                    <EditText
+                        android:id="@+id/tv_description"
+                        android:layout_marginLeft="@dimen/length_10"
+                        android:background="@drawable/et_bg"
+                        android:padding="@dimen/length_10"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/bt_find"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/find_"
+                    android:layout_marginRight="@dimen/length_10"
+                    android:layout_marginLeft="@dimen/length_10"
+                    android:background="@drawable/bt_login_bg"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_info"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/length_20"
+                    android:textSize="@dimen/text_font_12"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

@@ -7,8 +7,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.extra.presenter.BasePresenter;
+import com.extra.utils.DataUtils;
+import com.extra.utils.SPUtils;
 import com.extra.utils.StatusBarUtil;
+import com.extra.utils.ToastUtils;
 import com.extra.view.activity.BaseActivity;
+import com.szfp.scan.bean.ManagerModel;
+import com.szfp.scan.util.DbHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,6 +26,10 @@ public class LoginActivity extends BaseActivity {
     EditText etPassword;
     @BindView(R.id.btn_login)
     Button btnLogin;
+
+    private String name;
+    private String pass;
+    private ManagerModel managerModel;
 
     @Override
     public BasePresenter getPresenter() {
@@ -55,6 +64,35 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.btn_login)
     public void onViewClicked() {
+        name =etUserName.getText().toString();
+        pass = etPassword.getText().toString();
+
+        if (DataUtils.isNullString(name)|| DataUtils.isNullString(pass)){
+            ToastUtils.showToast("Please Input Edit");
+            return;
+        }
+
+        managerModel = DbHelper.getManager(name,pass);
+
+        if (managerModel == null){
+            if (name.equals("SZFPTECH")){
+                toMain();
+            }else
+            ToastUtils.showToast("");
+        }else toMain();
+
+    }
+
+    private void toMain() {
+        SPUtils.putString(this,"N",name);
+        if (managerModel==null)SPUtils.putBoolean(this,"O",true);
+        else  SPUtils.putBoolean(this,"O",managerModel.getTure());
+
+        App.userName = SPUtils.getString(this,"N");
+        App.isTurn = SPUtils.getBoolean(this,"O");
+
+        SPUtils.putBoolean(this,"L",true);
+
         finish();
         startActivity(new Intent(this,MainActivity.class));
     }

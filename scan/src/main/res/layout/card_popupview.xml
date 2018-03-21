@@ -80,6 +80,22 @@
             android:textStyle="bold"
             android:visibility="gone"
             android:layout_marginLeft="@dimen/shopping_cart_total_price_left_magrin"/>
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_new"
+            android:padding="@dimen/length_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bt_button_bg"
+            android:text="CheckOut"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
     </LinearLayout>
 
     <FrameLayout
@@ -96,6 +112,7 @@
             android:layout_height="@dimen/shopping_cart_image_height"
             android:layout_gravity="center"
             android:src="@drawable/ic_shopping_cart_white_24dp"/>
+
     </FrameLayout>
 
     <TextView

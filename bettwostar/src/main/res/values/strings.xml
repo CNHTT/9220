@@ -1,0 +1,76 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Bettwostar</string>
+    <string name="welcome">WELCOME</string>
+    <string name="login">LOG IN</string>
+    <string name="todo">TODO</string>
+    <string name="choose_operation">Choose Operation</string>
+    <string name="please_game_type">Please Select Game Type</string>
+    <string name="please_game_sort">Please Select Game Sort</string>
+    <string name="please_game_under">Please Select Game Under</string>
+    <string name="next">Next</string>
+    <string name="makebet">Make Bet</string>
+
+
+    <!--type: integer, "Nap or Perm":1, "Combination":2, "Grouping":3-->
+    <!--sort: integer, "100-1":1, "80-1":2, "40-1":3-->
+    <!--under :integer, "U3":3, "U4":4, "U5":5, "U6":6-->
+    <!--amount: float-->
+    <!--games:-->
+    <!--//Nap or Perm and Combination: string-->
+    <!--//Grouping: array-->
+    <!--group: string, "A","B"…-->
+    <!--number: integer,-->
+    <!--item: string,-->
+
+    <string-array name="types">
+        <item>Nap or Perm</item>
+        <item>Combination</item>
+        <item>Grouping</item>
+    </string-array>
+
+    <string-array name="sorts">
+        <item>100-1</item>
+        <item>80-1</item>
+        <item>40-1</item>
+    </string-array>
+
+    <string-array name="unders">
+        <item>U3</item>
+        <item>U4</item>
+        <item>U5</item>
+        <item>U6</item>
+    </string-array>
+
+
+    <string name="bt_cancel" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="bt_enter">ENTER</string>
+    <string-array name="chooses">
+        <item>Make Bet</item>
+        <item>Result</item>
+        <item>Reprint</item>
+        <item>Win List</item>
+        <item>Report</item>
+        <item>Credit Limit</item>
+        <item>Change Password</item>
+        <item>Delete bet</item>
+        <item>Logout</item>
+    </string-array>
+    <string name="title_activity_games">GamesActivity</string>
+    <string name="game_hint">Please select the game you want to play</string>
+    <string name="game_str">(1) (2) (3) (4) (5) (6) (7) (8) (9) (10) (11) (12) (13) (14) (15) (16) (17) (18) (19) (20) (21) (22) (23) (24) (25) (26) (27) (28) (29) (30) (31) (32) (33) (34) (35) (36) (37) (38) (39) (40) (41) (42) (43) (44) (45) (46) (47) (48) (49) </string>
+    <string name="view">BET VIEW</string>
+    <string name="add">add</string>
+    <string name="week">Week</string>
+    <string name="search">Search</string>
+    <string name="result">Result</string>
+    <string name="report">Report</string>
+    <string name="bet_id">Bet Id   </string>
+    <string name="win_list">Win List</string>
+    <string name="reprint">Reprint</string>
+    <string name="credit_limit">Credit Limit</string>
+    <string name="change">Change Password</string>
+    <string name="new_password">New Password</string>
+    <string name="chanage_pass">Change Password</string>
+    <string name="delect_bet">Delete bet</string>
+    <string name="nap_or_prem_and_grouping_can_only_choose_one_combination_can_be_multiple_choice">Nap or Prem and Grouping can only choose one, Combination can be multiple choice</string>
+</resources>

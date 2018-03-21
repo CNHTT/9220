@@ -1,5 +1,6 @@
 package com.extra.loyalty.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -22,6 +23,7 @@ import com.extra.utils.ToastUtils;
 import com.extra.view.activity.BaseActivity;
 import com.player.util.L;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -151,6 +153,15 @@ public class AllowedCampaignActivity extends BaseActivity {
            campaignsBeans =  adapter.getList();
 
             L.d(campaignsBeans.toString());
+
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("L", (Serializable) campaignsBeans);
+            intent.putExtras(bundle);
+            setResult(3,intent);
+            finish();
+
+
         }
     }
 }

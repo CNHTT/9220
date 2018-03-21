@@ -11,6 +11,8 @@ import com.extra.loyalty.R;
 import com.extra.loyalty.model.entities.AccountInfo;
 import com.extra.loyalty.presenter.MainPresenter;
 import com.extra.presenter.BasePresenter;
+import com.extra.utils.AppManager;
+import com.extra.utils.SPUtils;
 import com.extra.utils.StatusBarUtil;
 import com.extra.view.activity.BaseActivity;
 
@@ -67,7 +69,7 @@ public class MainActivity extends BaseActivity {
 
 
 
-    @OnClick({R.id.tv_loyalty_programs, R.id.tv_business_employees, R.id.tv_login_out})
+    @OnClick({R.id.tv_loyalty_programs, R.id.tv_business_employees,R.id.tv_customers,R.id.tv_setting, R.id.tv_login_out, R.id.tv_transaction})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_loyalty_programs:
@@ -76,7 +78,21 @@ public class MainActivity extends BaseActivity {
             case R.id.tv_business_employees:
                 startActivity(new Intent(this,BusinessEmployeesActivity.class));
                 break;
+            case R.id.tv_customers:
+                startActivity(new Intent(this,CustomersActivity.class));
+                break;
+            case R.id.tv_transaction:
+                startActivity(new Intent(this,TransactionsActivity.class));
+                break;
+            case R.id.tv_setting:
+                startActivity(new Intent(this,SettingActivity.class));
+                break;
             case R.id.tv_login_out:
+                SPUtils.putBoolean(this,ConstantValue.ISLOGIN,false);
+                SPUtils.putString(this,ConstantValue.ACCOUNT_ID_VALUE,"");
+                SPUtils.putString(this,ConstantValue.USER_ID_VALUE,"");
+                SPUtils.putString(this,ConstantValue.USER_API_KEY_VALUE,"");
+                AppManager.getAppManager().finishAllActivityAndExit(this);
                 break;
         }
     }

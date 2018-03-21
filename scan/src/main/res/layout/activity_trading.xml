@@ -8,10 +8,10 @@
     android:layout_height="match_parent"
     tools:context="com.szfp.scan.TradingActivity">
     <SurfaceView
-        android:background="@color/white"
-    android:id="@+id/capture_preview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+        android:visibility="gone"
+          android:id="@+id/capture_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
     />
     <RelativeLayout
     android:id="@+id/previewLayout"
@@ -78,6 +78,7 @@
             android:clickable="true" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/qrcode_g_gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -138,6 +139,7 @@
         android:id="@+id/shopping_cart_bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/shopping_cart_height"
+
         android:layout_alignParentBottom="true"
         android:background="@color/light_black"
         android:orientation="horizontal">
@@ -154,6 +156,21 @@
             android:textSize="@dimen/shopping_cart_total_price_word_size"
             android:textStyle="bold"
             android:visibility="gone"/>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_new"
+            android:padding="@dimen/length_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bt_button_bg"
+            android:text="CheckOut"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
+
     </LinearLayout>
 
     <FrameLayout

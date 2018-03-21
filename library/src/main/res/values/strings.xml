@@ -120,7 +120,7 @@
     <string name="open_fail">open bar code fail</string>
     <string name="close_success">close bar code success</string>
     <string name="close_fail">close bar code fail</string>
-    <string name="scan">scan</string>
+    <string name="scan">Inventory management</string>
     <string name="scan_parameter">Scan Configuration Parameter</string>
     <string name="close_scan">close</string>
     <string name="setting">Setting</string>

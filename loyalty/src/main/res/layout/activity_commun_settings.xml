@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/all_bg_color"
+    android:layout_height="match_parent"
+    tools:context="com.extra.loyalty.view.activity.CommunSettings">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/all_bg_color"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <LinearLayout
+        android:background="#EEEEEE"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_marginTop="@dimen/length_20"
+            android:layout_width="match_parent"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:layout_height="45dp">
+            <TextView
+                android:text="@string/public_network_ip"
+                android:layout_width="wrap_content"
+                android:textColor="#ff333333"
+                android:layout_gravity="center_vertical"
+                android:textSize="16sp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_pass"
+                android:layout_marginStart="@dimen/length_10"
+                android:background="@drawable/et_bg"
+                android:padding="@dimen/length_10"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="LabelFor" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

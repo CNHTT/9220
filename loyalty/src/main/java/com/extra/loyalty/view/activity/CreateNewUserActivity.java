@@ -12,11 +12,19 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.extra.loyalty.ConstantValue;
 import com.extra.loyalty.R;
+import com.extra.loyalty.adapter.AllowedCampaignAdapter;
+import com.extra.loyalty.model.entities.Result;
+import com.extra.loyalty.model.entities.UserBean;
+import com.extra.loyalty.utils.JsonUtil;
 import com.extra.presenter.BasePresenter;
+import com.extra.retrofit.HttpBuilder;
 import com.extra.utils.ContextUtil;
+import com.extra.utils.DataUtils;
 import com.extra.utils.StatusBarUtil;
 import com.extra.utils.TimeUtils;
+import com.extra.utils.ToastUtils;
 import com.extra.view.activity.BaseActivity;
 import com.extra.widget.NiceSpinner;
 import com.extra.widget.RunTextView;
@@ -26,7 +34,9 @@ import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +62,8 @@ public class CreateNewUserActivity extends BaseActivity {
     BetterSpinner nsLanguage;
     @BindView(R.id.ns_user_role)
     BetterSpinner nsUserRole;
+    @BindView(R.id.ns_timezone)
+    BetterSpinner nsTimezones;
     @BindView(R.id.btn_login)
     Button btnLogin;
     @BindView(R.id.tv_allowed_campaigns)
@@ -60,13 +72,16 @@ public class CreateNewUserActivity extends BaseActivity {
     private List<String> languagesStr;
     private List<String> roles;
     private List<String> rolesStr;
+    private List<String> timezones;
+    private List<String> timezonesStr;
     ArrayAdapter<String> adapter1;
     ArrayAdapter<String> adapter2;
+    ArrayAdapter<String> adapter3;
 
 
+    private Map<String, String> map;
 
     private String user_name;
-
     private String user_new_password;
     private String user_first_name;
     private String user_last_name;
@@ -76,6 +91,11 @@ public class CreateNewUserActivity extends BaseActivity {
     private String language_selector="EN";
     private String user_role="A";
     private String allowed_campaigns ="all";
+
+    private String timezone_selector = "57";
+
+
+    private List<Result.CampaignsBean>  list = new ArrayList<>();
 
 
     @Override
@@ -91,30 +111,34 @@ public class CreateNewUserActivity extends BaseActivity {
         languagesStr = Arrays.asList(getResources().getStringArray(R.array.available_languages_str));
         roles = Arrays.asList(getResources().getStringArray(R.array.user_permission_levels));
         rolesStr = Arrays.asList(getResources().getStringArray(R.array.user_permission_levels_str));
+        timezones = Arrays.asList(getResources().getStringArray(R.array.timezones));
+        timezonesStr = Arrays.asList(getResources().getStringArray(R.array.timezones_str));
+
+
         adapter1 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, languagesStr);
 
         adapter2 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, rolesStr);
+        adapter3= new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, timezonesStr);
 
 
         nsLanguage.setAdapter(adapter1);
         nsUserRole.setAdapter(adapter2);
-
-        nsLanguage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                L.d(position+"");
-                language_selector=languages.get(position);
-            }
+        nsTimezones.setAdapter(adapter3);
+        nsLanguage.setOnItemClickListener((parent, view, position, id) -> {
+            L.d(position+"");
+            language_selector=languages.get(position);
         });
 
-        nsUserRole.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                L.d(position+"");
-                user_role = roles.get(position);
-            }
+        nsUserRole.setOnItemClickListener((parent, view, position, id) -> {
+            L.d(position+"");
+            user_role = roles.get(position);
+        });
+        nsTimezones.setOnItemClickListener((parent, view, position, id) -> {
+            L.d(position+"");
+            timezone_selector=timezones.get(position);
         });
 
     }
@@ -141,8 +165,92 @@ public class CreateNewUserActivity extends BaseActivity {
                 showCampaign();
                 break;
             case R.id.btn_login:
+                toCreateUser();
                 break;
         }
+    }
+
+    private void toCreateUser() {
+
+
+        user_name = etUserName .getText().toString();
+        user_new_password  =etUserPassword.getText().toString();
+        user_first_name = etUserFirstName.getText().toString();
+        user_last_name  =  etUserLastName.getText().toString();
+        user_custom1 = etUserCustom .getText().toString();
+
+        if (
+                DataUtils.isNullString(user_name)||
+                DataUtils.isNullString(user_new_password)||
+                DataUtils.isNullString(user_last_name)||
+                DataUtils.isNullString(user_first_name)||
+                DataUtils.isNullString(user_custom1)){
+            ToastUtils.showToast("Please Input/Edit");
+            return;
+        }
+        showProgressDialog(R.string.xw_ptr_loading);
+        map  = new HashMap<>();
+        map.put(ConstantValue.USER_ID, ConstantValue.USER_ID_VALUE);
+        map.put(ConstantValue.USER_PASSWORD, ConstantValue.USER_API_KEY_VALUE);
+        map.put(ConstantValue.ACCOUNT_ID, ConstantValue.ACCOUNT_ID_VALUE);
+        map.put(ConstantValue.TYPE,ConstantValue.USER_NEW);
+
+        map.put(ConstantValue.USER_NAME,user_name);
+        map.put(ConstantValue.USER_NEW_PASSWORD,user_new_password);
+        map.put(ConstantValue.USER_FIRST_NAME,user_first_name);
+        map.put(ConstantValue.USER_LAST_NAME,user_last_name);
+        map.put(ConstantValue.user_custom1,user_custom1);
+//        map.put(ConstantValue.user_PIN,user_PIN);
+        map.put(ConstantValue.language_selector,language_selector);
+        map.put(ConstantValue.timezone_selector,timezone_selector);
+        map.put(ConstantValue.user_role,user_role);
+        map.put(ConstantValue.allowed_campaigns,allowed_campaigns);
+        L.d(map.toString());
+
+        new HttpBuilder(ConstantValue.localhost)
+                .tag(this)
+                .params(map)
+                .success( (String s) ->{
+                    L.d(s);
+                    cancleProgressDialog();
+                    Result result = (Result) JsonUtil.stringToObject(s, Result.class);
+                    if (result.checkResult()) {
+                        UserBean userBean = result.getUser();
+                        String user_id =userBean.getUser_id();
+                        String user_api_key =userBean.getUser_api_key();
+
+                        L.d(user_api_key +"            " + user_id);
+
+
+                        resetView();
+
+                    } else {
+                        ToastUtils.showToast(result.getMessage());
+                    }
+                })
+                .error( e ->{
+                    L.d(e.toString());
+                })
+                .post();
+
+
+
+
+
+
+    }
+
+    private void resetView() {
+        etUserPin.setText("");
+        etUserCustom.setText("");
+        etUserFirstName.setText("");
+        etUserName.setText("");
+        etUserPassword.setText("");
+        etUserLastName.setText("");
+
+        user_PIN = TimeUtils.getUUID();
+        etUserPin.setText(user_PIN);
+        tvAllowedCampaigns.setText(allowed_campaigns);
     }
 
     /**
@@ -162,17 +270,14 @@ public class CreateNewUserActivity extends BaseActivity {
             campaginDialog = new BaseDialog(this,R.style.AlertDialogStyle);
             campaginDialog.setContentView(view);
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if (position!=1){
-                        allowed_campaigns=allowedCampaigs.get(position);
-                        tvAllowedCampaigns.setText(allowed_campaigns);
-                        campaginDialog.cancel();
-                    }else {
-                        campaginDialog.cancel();
-                        showCampaigns();
-                    }
+            listView.setOnItemClickListener((parent, view1, position, id) -> {
+                if (position!=1){
+                    allowed_campaigns=allowedCampaigs.get(position);
+                    tvAllowedCampaigns.setText(allowed_campaigns);
+                    campaginDialog.cancel();
+                }else {
+                    campaginDialog.cancel();
+                    showCampaigns();
                 }
             });
         }
@@ -191,5 +296,26 @@ public class CreateNewUserActivity extends BaseActivity {
     @Override
     public int getContentLayout() {
         return R.layout.activity_create_new_user;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==3){
+            list = (ArrayList<Result.CampaignsBean>) data.getSerializableExtra("L");
+            L.d(list.toString());
+            for (int i = 0; i <list.size() ; i++) {
+                if(i==0)
+                {
+                    tvAllowedCampaigns.setText(list.get(i).getName());
+                    allowed_campaigns = list.get(i).getId();
+                }
+                else{
+                    tvAllowedCampaigns.append(","+list.get(i).getName());
+                    allowed_campaigns = allowed_campaigns + "," + list.get(i).getId();
+                }
+            }
+            L.d(allowed_campaigns);
+        }
     }
 }
