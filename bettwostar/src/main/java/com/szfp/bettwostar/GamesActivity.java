@@ -80,6 +80,8 @@ public class GamesActivity extends BaseActivity {
         StatusBarUtil.setTransparent(this);
         m = (M) getIntent().getSerializableExtra("M");
         toolbar.setTitle(m.getString1()+"   > "+m.getString2()+"   >U"+m.getUnder()) ;
+
+
     }
 
 
@@ -98,6 +100,10 @@ public class GamesActivity extends BaseActivity {
         if (getSupportActionBar() != null)
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initView();
+
+        if(m.getType().equals("3")){
+            showInitNumber();
+        }
     }
 
     private void initView() {
@@ -129,10 +135,86 @@ public class GamesActivity extends BaseActivity {
             if (list.size() >=Integer.parseInt(m.getUnder()) ) {
                 showSelectAmount();
             }else ToastUtils.showToast("The minimum number of selection is "+Integer.parseInt(m.getUnder()));
+        }else if (m.getType().equals("2")){
+
+            String [] len = m.getUnder().split(",");
+            int a = 0,b = 0;b = Integer.parseInt(len[0]);
+            for (int i = 0; i <len.length ; i++) {
+                a = Integer.parseInt(len[i]);
+                if (a>b) b=a;
+            }
+            if (list.size() >=b)  {
+                showSelectAmount();
+            }else ToastUtils.showToast("The minimum number of selection is "+b);
+        } else if (m.getType().equals("3")){
+
+
+            if (list.size()>=Integer.parseInt(groupBean.getNumber())){
+
+                games = new ArrayList<>();
+                String infoStr="";
+                for (int i = 0; i <groupBeans.size() ; i++) {
+                    infoStr = infoStr +groupBeans.get(i).getGroup() +":"+groupBeans.get(i).getNumber()+"("+groupBeans.get(i).getItem()+")\n";
+                    games.addAll(Arrays.asList(groupBeans.get(i).getItem().split(",")));
+                }
+                L.d(infoStr);
+                games.addAll(Arrays.asList(str.split(",")));
+                if (checkArrayList(games)){
+                    ToastUtils.showToast("Can't choose duplicate game \n"+infoStr);
+                    return;
+
+                }
+
+
+
+
+                //
+                groupBean.setItem(str);
+                groupBeans.add(groupBean);
+                numberAll = 0;
+                for (int i = 0; i <groupBeans.size() ; i++) {
+                    numberAll =numberAll + Integer.valueOf(groupBeans.get(i).getNumber());
+                }
+                if (numberAll ==Integer.valueOf(m.getUnder())){
+                    ToastUtils.showToast("Please Input Group Amount ");
+                    groupEdit = new DialogEditSureCancel(GamesActivity.this);
+                    groupEdit.getTvTitle().setText("Please Input Amount");
+                    groupEdit.getTvSure().setOnClickListener(On2ClickListener);
+                    groupEdit.getTvCancel().setOnClickListener(On2ClickListener);
+                    groupEdit.show();
+                }else {
+                    showInitNumber();
+                }
+
+            }else {
+                ToastUtils.showToast("Please select more than (>="+number+") games ");
+            }
+
+
         }else
         if (list.size() > 2) {
             showSelectAmount();
         } else ToastUtils.showToast("The minimum number of selection is 3");
+    }
+
+    /**
+     * 输入number
+     */
+    private void showInitNumber() {
+        if (groupBeans==null)groupBeans = new ArrayList<>();
+        gSize = groupBeans.size();//==0?1:groupBeans.size();
+        groupBean = new GroupBean();
+        groupBean.setGroup(groups.get(gSize));
+        String infoStr="";
+        for (int i = 0; i <groupBeans.size() ; i++) {
+            infoStr = infoStr +groupBeans.get(i).getGroup() +":"+groupBeans.get(i).getNumber()+"("+groupBeans.get(i).getItem()+")\n";
+            games.addAll(Arrays.asList(groupBeans.get(i).getItem().split(",")));
+        }
+        if (editDialog == null) editDialog = new DialogEditSureCancel(this);
+        editDialog.getTvTitle().setText("Please Input number   \n" +infoStr+groups.get(gSize)+ ":___" );
+        editDialog.getTvSure().setOnClickListener(numberOnClickListener);
+        editDialog.getTvCancel().setOnClickListener(numberOnClickListener);
+        editDialog.show();
     }
 
     private DialogEditSureCancel editDialog;
@@ -145,6 +227,8 @@ public class GamesActivity extends BaseActivity {
     private void showSelectAmount() {
 
         if (m.getType().equals("3")){//group
+
+
 
             if (groupBeans==null)groupBeans = new ArrayList<>();
             gSize = groupBeans.size();//==0?1:groupBeans.size();
@@ -195,8 +279,6 @@ public class GamesActivity extends BaseActivity {
     private View.OnClickListener numberOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-
             switch (v.getId()) {
                 case R.id.tv_sure:
                     number = editDialog.getEditText().getText().toString();
@@ -219,31 +301,17 @@ public class GamesActivity extends BaseActivity {
                         ToastUtils.showToast("Please input number   <="+(Integer.valueOf(m.getUnder())-numberAl));
                         return;
                     }
-
+                    //
+                    if (groupBeans.size() ==0)
+                        if (Integer.parseInt(number)>=Integer.valueOf(m.getUnder())){
+                            ToastUtils.showToast("Please input number   <="+(Integer.valueOf(m.getUnder())-1));
+                            return;
+                        }
                     groupBean.setNumber(number);
                     if (editDialog != null) editDialog.cancel();
-
-                    if (numberAll ==Integer.valueOf(m.getUnder())){
-
-                        groupBeans.add(groupBean);
-                        ToastUtils.showToast("Please Input Group Amount ");
-                        groupEdit = new DialogEditSureCancel(GamesActivity.this);
-                        groupEdit.getTvTitle().setText("Please Input Amount");
-                        groupEdit.getTvSure().setOnClickListener(On2ClickListener);
-                        groupEdit.getTvCancel().setOnClickListener(On2ClickListener);
-                        groupEdit.show();
-
-                        numberAll =   numberAll - Integer.valueOf(number);
-                    }else {
-
-                        groupBeans.add(groupBean);
-                        flNumber.clearAllOption();
-                        flowAdapter.clearAndAddAll(numbers);
-                        numberAll =   numberAll - Integer.valueOf(number);
-                        ToastUtils.showToast("Please continue to select the game you need");
-                    }
-
-
+                    flNumber.clearAllOption();
+                    flowAdapter.clearAndAddAll(numbers);
+                    ToastUtils.showToast("Please select more than (>="+number+") games ");
 
                     break;
 
@@ -330,7 +398,6 @@ public class GamesActivity extends BaseActivity {
     private View.OnClickListener OnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
 
             switch (v.getId()) {
                 case R.id.tv_sure:

@@ -110,7 +110,7 @@ public class ResultActivity extends BaseActivity {
                     if (resultBean.getRst()){
                         dataBean = resultBean.getData();
 
-                        PrintManager.getmInstance(this).printPosRecord(dataBean);
+//                        PrintManager.getmInstance(this).printPosRecord(dataBean);
                         string = new StringBuffer();
                         string.append("TSN : " +dataBean.getTx_id()+"\n");
                         string  .append("MatchPlayed : " +dataBean.getPlayed_date()+"\n");
@@ -136,7 +136,7 @@ public class ResultActivity extends BaseActivity {
                         dialogSureCancel.setTitle("Result");
                         dialogSureCancel.setContent(string.toString());
                         dialogSureCancel.setSureListener(v -> {
-                            PrintManager.getmInstance(ResultActivity.this).printPosRecord(dataBean);
+//                            PrintManager.getmInstance(ResultActivity.this).printPosRecord(dataBean);
                             AppManager.getAppManager().finishActivity(ResultActivity.this);
                                 dialogSureCancel.cancel();});
                         dialogSureCancel.setCancelListener(v -> {
