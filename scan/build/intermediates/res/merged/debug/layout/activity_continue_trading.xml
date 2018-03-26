@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/all_bg_color"
+    tools:context="com.szfp.scan.ContinueTradingActivity">
+
+    <RelativeLayout
+        android:id="@+id/previewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/all_bg_color"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <TextView
+        android:id="@+id/tv_scan_result"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_centerInParent="true"
+        android:textColor="@android:color/white" />
+
+    <!-- 扫描框底部的布局 -->
+    <RelativeLayout
+        android:id="@+id/bottom_mask"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/scan_bg"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        >
+        <TextView
+            android:id="@+id/scan_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/scan_allcode_hint"
+            android:textColor="#b4b4b4"
+            android:textSize="14sp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            />
+
+        <TextView
+            android:id="@+id/iv_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:layout_below="@id/scan_hint"
+            android:background="@drawable/shouquan_qrcode_s_flashgun"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/qrcode_ic_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/scan_hint"
+            android:background="@drawable/shouquan_qrcode_ic_back"
+            android:clickable="true" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/qrcode_g_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_below="@id/scan_hint"
+            android:background="@drawable/shouquan_qrcode_g_gallery"
+            android:clickable="true"
+            android:textSize="20sp" />
+    </RelativeLayout>
+    <!-- 扫描框中间的布局 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/bottom_mask"
+        >
+        <ImageView
+            android:id="@+id/left_mask"
+            android:layout_width="34dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@color/scan_bg"
+            android:contentDescription="@string/app_name" />
+        <ImageView
+            android:id="@+id/right_mask"
+            android:layout_width="34dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/scan_bg" />
+        <RelativeLayout
+            android:paddingTop="@dimen/length_20"
+            android:id="@+id/capture_crop_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/right_mask"
+            android:layout_toRightOf="@id/left_mask"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent" >
+            <ImageView
+                android:id="@+id/capture_scan_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="5dp"
+                android:background="@drawable/scanning_line" />
+            <com.szfp.scan.view.MyImageView
+                android:id="@+id/scan_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/shopping_cart_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shopping_cart_height"
+
+        android:layout_alignParentBottom="true"
+        android:background="@color/light_black"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/shopping_cart_total_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/shopping_cart_total_price_left_magrin"
+            android:text="120"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/shopping_cart_total_price_word_size"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_new"
+            android:padding="@dimen/length_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bt_button_bg"
+            android:text="CheckOut"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/shopping_cart_layout"
+        android:layout_width="@dimen/shopping_cart_circle_size"
+        android:layout_height="@dimen/shopping_cart_circle_size"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/shopping_cart_bottom_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:background="@drawable/circle_blue"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/shopping_cart"
+            android:layout_width="@dimen/shopping_cart_image_height"
+            android:layout_height="@dimen/shopping_cart_image_height"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_shopping_cart_white_24dp"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/shopping_cart_total_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/shopping_cart_bottom"
+        android:layout_alignRight="@id/shopping_cart_layout"
+        android:background="@drawable/small_red_circle"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:visibility="gone"/>
+</RelativeLayout>

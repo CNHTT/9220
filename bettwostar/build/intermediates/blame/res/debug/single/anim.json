@@ -1,0 +1,138 @@
+[
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\fade_in_center.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\fade_in_center.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_in.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\79b88ab3a25891009d5b47ee992d822f\\res\\anim\\design_snackbar_in.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\anim_slide_top_in.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\anim_slide_top_in.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\out_from_right.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\bettwostar\\src\\main\\res\\anim\\out_from_right.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\anim_alpha_out.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\anim_alpha_out.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\out_from_left.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\bettwostar\\src\\main\\res\\anim\\out_from_left.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\anim_slide_top_out.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\anim_slide_top_out.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\in_from_right.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\bettwostar\\src\\main\\res\\anim\\in_from_right.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\slide_in_bottom.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_in_bottom.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\slide_out_left.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_out_left.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\anim_slide_bottom_out.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\anim_slide_bottom_out.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_out.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\79b88ab3a25891009d5b47ee992d822f\\res\\anim\\design_snackbar_out.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\tooltip_enter.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\tooltip_enter.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\tooltip_exit.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\tooltip_exit.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\anim_alpha_in.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\anim_alpha_in.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\abc_popup_exit.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\slide_in_right.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_in_right.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\slide_out_bottom.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_out_bottom.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\in_from_left.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\bettwostar\\src\\main\\res\\anim\\in_from_left.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\slide_in_left.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_in_left.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\anim_slide_bottom_in.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\anim_slide_bottom_in.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_out.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\79b88ab3a25891009d5b47ee992d822f\\res\\anim\\design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\slide_out_right.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_out_right.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\design_bottom_sheet_slide_in.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\79b88ab3a25891009d5b47ee992d822f\\res\\anim\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\debug\\anim\\fade_out_center.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\debug\\res\\anim\\fade_out_center.xml"
+    }
+]

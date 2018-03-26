@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\drawable-v21\\avd_show_password.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\79b88ab3a25891009d5b47ee992d822f\\res\\drawable-v21\\avd_show_password.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\drawable-v21\\avd_hide_password.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\79b88ab3a25891009d5b47ee992d822f\\res\\drawable-v21\\avd_hide_password.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\drawable-v21\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\drawable-v21\\design_password_eye.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\79b88ab3a25891009d5b47ee992d822f\\res\\drawable-v21\\design_password_eye.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\drawable-v21\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\drawable-v21\\notification_action_background.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9288afe71ff9b002fa2e4dd57d33b98a\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_action_bar_item_background_material.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\drawable-v21\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\79b88ab3a25891009d5b47ee992d822f\\res\\drawable-v21\\design_bottom_navigation_item_background.xml"
+    }
+]

@@ -1,0 +1,102 @@
+[
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\switch_thumb_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\design_tint_password_toggle.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\79b88ab3a25891009d5b47ee992d822f\\res\\color\\design_tint_password_toggle.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\cpb_complete_state_selector.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\release\\res\\color\\cpb_complete_state_selector.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_spinner.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_tint_spinner.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_secondary_text_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\switch_thumb_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\design_error.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\79b88ab3a25891009d5b47ee992d822f\\res\\color\\design_error.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\cpb_idle_state_selector.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\release\\res\\color\\cpb_idle_state_selector.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_hint_foreground_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_hint_foreground_material_light.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\cpb_error_state_selector.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\release\\res\\color\\cpb_error_state_selector.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_edittext.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_tint_edittext.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_btn_checkable.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_secondary_text_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_disable_only_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_switch_track.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_btn_colored_text_material.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_search_url_text.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_search_url_text.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_default.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_tint_default.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_seek_thumb.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\normal_text_color.xml",
+        "source": "D:\\BaiduYunDownload\\9220\\library\\build\\intermediates\\bundles\\release\\res\\color\\normal_text_color.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_disable_only_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_btn_colored_borderless_text_material.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "D:\\BaiduYunDownload\\9220\\bettwostar\\build\\intermediates\\res\\merged\\release\\color\\abc_hint_foreground_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\c7b18db46c5be813b9f13c1731d23dd9\\res\\color\\abc_hint_foreground_material_dark.xml"
+    }
+]

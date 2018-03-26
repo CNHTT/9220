@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/all_bg_color"
+    android:orientation="vertical"
+    tools:context="com.szfp.scan.MainActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/all_bg_color"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/color_line"/>
+
+
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_trading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_font_20"
+            android:text="1.Trading"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:background="@drawable/main_bottom"/>
+        <TextView
+            android:id="@+id/tv_continue_trading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_font_20"
+            android:text="2.Continue Trading"
+            android:paddingTop="10dp"
+            android:layout_marginTop="2dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:background="@drawable/main_bottom"/>
+        <TextView
+            android:id="@+id/tv_view_trade"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_font_20"
+            android:text="3.View Last Trade"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:background="@drawable/main_bottom"/>
+        <TextView
+            android:id="@+id/tv_check_inv"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_font_20"
+            android:text="4.Check inventory"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:background="@drawable/main_bottom"/>
+        <TextView
+            android:id="@+id/tv_add_inv"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_font_20"
+            android:text="5.Add Product"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:background="@drawable/main_bottom"/>
+        <TextView
+            android:id="@+id/logout"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_font_20"
+            android:text="6.LOGIN OUT"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:background="@drawable/main_bottom"/>
+        <TextView
+            android:id="@+id/add_operation"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_font_20"
+            android:text="7.Add Operator"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:background="@drawable/main_bottom"/>
+
+    </LinearLayout>
+</LinearLayout>
