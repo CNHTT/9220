@@ -7,3 +7,7 @@
 /build
 /captures
 .externalNativeBuild
+scan/build/intermediates/
+scan/build/generated/
+oddsportsl/build/
+bettwostar/build/
