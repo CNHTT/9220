@@ -56,7 +56,7 @@ public class WinListAdapter extends BaseListAdapter<WinListBean> {
 
         @SuppressLint("SetTextI18n")
         void setData(WinListBean data, int position) {
-            layTv.setText(position+1 + "Bet : "+ data.getBet_id() + "  Amount : " + data.getAmount());
+            layTv.setText(  "Bet : "+ data.getBet_id() + " \n Amount : " + data.getAmount());
         }
     }
 }

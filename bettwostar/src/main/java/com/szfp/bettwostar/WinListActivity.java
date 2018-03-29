@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,10 +32,13 @@ public class WinListActivity extends BaseActivity {
     Toolbar toolbar;
     @BindView(R.id.iv_no_data)
     ImageView ivNoData;
-    @BindView(R.id.tv_result)
     TextView tvResult;
     @BindView(R.id.lv_list)
     ListViewForScrollView lvList;
+
+
+    @BindView(R.id.bt_print)
+    Button btPrint;
 
 
     private LoginBean resultBean;
@@ -54,6 +58,8 @@ public class WinListActivity extends BaseActivity {
         ButterKnife.bind(this);
         StatusBarUtil.setTranslucent(this);
         toolbar.setTitle(R.string.win_list);
+
+
     }
 
     @Override
@@ -69,10 +75,26 @@ public class WinListActivity extends BaseActivity {
     @Override
     public void bindView(Bundle savedInstanceState) {
         if (getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);initView();
+
+
+
+        btPrint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (postResult!=null){
+                    PrintManager.getmInstance(WinListActivity.this).printWinList(resultBean);
+                }
+            }
+        });
     }
 
     @SuppressLint("SetTextI18n")
     private void initView() {
+
+        View  view= View.inflate(this,R.layout.layout_ad_cont,null);
+        tvResult  = view .findViewById(R.id.tv_result);
+
+        lvList.addHeaderView(view);
         postResult = new PostResult();
         postResult.setSn(SPUtils.getString(this,AppUrl.value_sn));
         postResult.setToken(SPUtils.getString(this,AppUrl.value_token));
@@ -90,6 +112,7 @@ public class WinListActivity extends BaseActivity {
                     resultBean = (LoginBean) JsonUtil.stringToObject(s,LoginBean.class);
                     if (resultBean.getRst()){
                         ivNoData.setVisibility(View.GONE);
+                        btPrint.setVisibility(View.VISIBLE);
                         dataBean =  resultBean.getData();
                         tvResult.setText("Agent : " + dataBean.getAgent()+"\n");
                         tvResult.append("Operator : " + dataBean.getOperator()+"\n");
@@ -102,9 +125,6 @@ public class WinListActivity extends BaseActivity {
                             lvList.setAdapter(adapter);
                             
                         }
-
-                        PrintManager.getmInstance(this).printWinList(resultBean);
-
                     }else {
 
                     }

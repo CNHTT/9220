@@ -13,14 +13,9 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <ScrollView
-        android:background="@color/white"
-        android:layout_below="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
 
         <LinearLayout
+            android:layout_below="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -29,16 +24,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@mipmap/ic_no_data" />
-            <TextView
-                android:id="@+id/tv_result"
-                android:padding="@dimen/text_font_20"
+
+            <Button
+                android:id="@+id/bt_print"
+                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/cpb_white"
+                android:text="Print"
+                android:background="@color/dark_green"
+                />
             <com.extra.widget.listview.ListViewForScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lv_list"/>
         </LinearLayout>
 
-    </ScrollView>
 </RelativeLayout>
