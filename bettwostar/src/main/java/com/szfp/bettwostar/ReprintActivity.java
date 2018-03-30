@@ -87,6 +87,7 @@ public class ReprintActivity extends BaseActivity {
                         tvResult.append("Total Stake : " + dataBean.getTotal_stake()+"\n");
                          adapter = new ReprintBetAdapter(this,dataBean.getBets());
                          lvList.setAdapter(adapter);
+
                         PrintManager.getmInstance(this).printPosRecord1(resultBean.getData() );
 
 

@@ -217,6 +217,10 @@ public class PrintManager {
         origin.recycle();
         return newBM;
     }
+
+
+
+
     public int printWeek(LoginBean resultBean) {
         this.printTask = new PrintTask();
         this.printFlag = true;
@@ -551,6 +555,9 @@ public class PrintManager {
         return ret ;
 
     }
+
+
+
     /**
      * 打印两列
      *

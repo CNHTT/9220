@@ -20,6 +20,7 @@ import com.extra.utils.ToastUtils;
 import com.extra.view.activity.BaseActivity;
 import com.extra.widget.dialog.DialogSureCancel;
 import com.player.util.L;
+import com.pos.device.printer.Printer;
 import com.szfp.bettwostar.adapter.ItemAdapter;
 import com.szfp.bettwostar.model.entities.GroupBean;
 import com.szfp.bettwostar.model.entities.LoginBean;
@@ -136,9 +137,26 @@ public class ResultActivity extends BaseActivity {
                         dialogSureCancel.setTitle("Result");
                         dialogSureCancel.setContent(string.toString());
                         dialogSureCancel.setSureListener(v -> {
-//                            PrintManager.getmInstance(ResultActivity.this).printPosRecord(dataBean);
+
+                            dialogSureCancel.cancel();
+
+
+
+
+                            int  printType=
+
+                                    PrintManager.getmInstance(ResultActivity.this).printPosRecord(dataBean);
+
+                            if (printType!= Printer.PRINTER_OK){ //   success
+                                checkPrint();
+                            }
+
+
+
+
                             AppManager.getAppManager().finishActivity(ResultActivity.this);
-                                dialogSureCancel.cancel();});
+
+                        });
                         dialogSureCancel.setCancelListener(v -> {
                             AppManager.getAppManager().finishActivity(ResultActivity.this);
                             dialogSureCancel.cancel();
@@ -155,6 +173,38 @@ public class ResultActivity extends BaseActivity {
                 })
                 .postBady();
     }
+
+
+    DialogSureCancel dialogSureCancel;
+    public void checkPrint(){
+        dialogSureCancel = new DialogSureCancel(this,R.style.AlertDialogStyle);
+        dialogSureCancel.setContent("The printer is abnormal please check the printer");
+        dialogSureCancel.setSure("Print");
+        dialogSureCancel.setCancel("CANCEL");
+        dialogSureCancel.setCancelable(false);
+        dialogSureCancel.setSureListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogSureCancel.cancel();
+                //再次打yi
+                int  printType=   PrintManager.getmInstance(ResultActivity.this).printPosRecord(dataBean);
+                if (printType!= Printer.PRINTER_OK){ //   success
+                    checkPrint();
+                }
+                
+            }
+        });
+        dialogSureCancel.setCancelListener(v -> dialogSureCancel.cancel());
+        dialogSureCancel.show();
+    }
+
+
+
+
+
+
+
+
 
     @Override
     public BasePresenter getPresenter() {
@@ -219,4 +269,12 @@ public class ResultActivity extends BaseActivity {
         }
         return true;
     }
+
+
+
+
+
+
+
+
 }
