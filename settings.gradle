@@ -1,1 +1,1 @@
-include ':app', ':library', ':loyalty', ':player', ':pull', ':oddsportsl', ':scan', ':bettwostar'
+include ':app', ':library', ':player', ':pull'
